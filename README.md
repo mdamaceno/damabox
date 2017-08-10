@@ -4,6 +4,16 @@ O Damabox é uma alternativa ao XAMPP construída sobre o Docker. Com ele, você
 
 ## Modo de usar
 
+Primeiramente, é preciso fazer o build das imagens que serão usadas no Docker. Execute os comandos abaixo na raíz do Damabox:
+
+``` bash
+# Faz o build da imagem do PHP com Apache
+$ docker build -t damabox_php_apache -f Dockerfile-apache .
+
+# Faz o build da imagem do Firebird
+$ docker build -t damabox_firebird -f Dockerfile-firebird .
+```
+
 Crie um arquivo .env na raíz do Damabox se baseando no arquivo env-sample. Você pode serguir os passos abaixo:
 
 ``` bash
