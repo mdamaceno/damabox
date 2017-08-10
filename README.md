@@ -23,6 +23,10 @@ $ cp env-sample .env
 # Edite o arquivo de configuração
 $ vim .env
 
+# Crie um arquivo php.ini dentro de config/php/VERSAO
+# para sobrescrever as configurações default do PHP (opcional)
+$ vim config/php/7.1/php.ini
+
 # Inicie todos os containers
 $ docker-compose up
 ```
