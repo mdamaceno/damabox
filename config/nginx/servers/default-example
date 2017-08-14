@@ -4,10 +4,12 @@ server {
     root /app;
     index index.php index.html;
 
+    autoindex on;
+
     location ~ \.php$ {
         try_files $uri =404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass 10.5.0.8:9000;
+        fastcgi_pass php-7.1:9000;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;

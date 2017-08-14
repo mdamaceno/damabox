@@ -54,8 +54,8 @@ server {
         try_files $uri =404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
 
-        // IP do serviço PHP que será usada na aplicação. Veja o IP correspondente no arquivo docker-compose.yml
-        fastcgi_pass 10.5.0.8:9000;
+        // Nome do serviço PHP que será usada na aplicação
+        fastcgi_pass php-7.1:9000;
 
         fastcgi_index index.php;
         include fastcgi_params;
