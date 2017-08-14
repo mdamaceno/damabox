@@ -4,3 +4,4 @@
 /config/php/7.1/*.ini
 
 /config/nginx/servers/*.conf
+!/config/nginx/servers/*-example
