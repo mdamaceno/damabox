@@ -1,20 +1,10 @@
 # Damabox
 
-O Damabox é uma alternativa ao XAMPP construída sobre o Docker. Com ele, você pode rodar sua aplicação PHP com servidor Apache.
+O Damabox é uma alternativa ao XAMPP construída sobre o Docker. Com ele, você pode rodar sua aplicação PHP com servidor Nginx.
 
 ## Modo de usar
 
-Primeiramente, é preciso fazer o build das imagens que serão usadas no Docker. Execute os comandos abaixo na raíz do Damabox:
-
-``` bash
-# Faz o build da imagem do PHP com Apache
-$ docker build -t damabox_php_apache -f Dockerfile-apache .
-
-# Faz o build da imagem do Firebird
-$ docker build -t damabox_firebird -f Dockerfile-firebird .
-```
-
-Crie um arquivo .env na raíz do Damabox se baseando no arquivo env-sample. Você pode serguir os passos abaixo:
+Crie um arquivo **.env** na raíz do Damabox se baseando no arquivo env-sample. Você pode serguir os passos abaixo:
 
 ``` bash
 # Crie um arquivo de configuração de ambiente
@@ -31,6 +21,52 @@ $ vim config/php/7.1/php.ini
 $ docker-compose up
 ```
 
+Segue um exemplo do arquivo **.env**:
+
+```
+###########################################
+# Project - Apache
+###########################################
+
+PROJECT_DIR=project/directory/path
+HTTP_PORT=8080
+
+###########################################
+# Firebird
+###########################################
+
+FIREBIRD_ROOT_USER=user
+FIREBIRD_ROOT_PASSWORD=password
+FIREBIRD_PORT=3500
+FIREBIRD_DATADIR=database/directory/path
+```
+
+Dentro da pasta **config/nginx/servers** há um exemplo de configuração de server do Nginx que deverá ser duplicado com extensão **.conf**. O conteúdo do arquivo pode ser como no exemplo abaixo:
+
+```
+server {
+    listen   80;
+
+    root /app;
+    index index.php index.html;
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+
+        // IP do serviço PHP que será usada na aplicação. Veja o IP correspondente no arquivo docker-compose.yml
+        fastcgi_pass 10.5.0.8:9000;
+
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+}
+```
+
+Para sobrescrever as configurações default do PHP, crie um arquivo php.ini dentro do diretŕoio config/php/VERSAO-UTILIZADA com os parâmetros que deseja sobrescrever.
+
 ## Contribuições
 
 Toda contribuição é bem vinda!
@@ -42,9 +78,9 @@ Não se esqueça de dar uma estrela no repositório :)
 ## Todo
 
 - ~~Suporte ao PHP~~
-- ~~Suporte ao Apache~~
+- ~~Suporte ao Nginx~~
 - ~~Suporte ao Firebird~~
-- Suporte ao Nginx
+- Suporte ao Apache
 - Suporte ao MySQL
 - Suporte ao PostgreSQL
 - Suporte ao MongoDB
