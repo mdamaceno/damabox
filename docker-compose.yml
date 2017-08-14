@@ -21,7 +21,7 @@ services:
         ipv4_address: 10.5.0.6
 
   php-7.0:
-    image: maadamaceno/damabox_php70:latest
+    image: maadamaceno/damabox_php7.0:latest
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
