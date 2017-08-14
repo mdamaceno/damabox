@@ -7,8 +7,7 @@ services:
       - ${PROJECT_DIR}:/app
       - ./config/php/5.5/php.ini:/usr/local/etc/php/conf.d/php.ini
     networks:
-      connect:
-        ipv4_address: 10.5.0.5
+      - connect
 
   php-5.6:
     image: maadamaceno/damabox_php5.6:latest
@@ -17,8 +16,7 @@ services:
       - ${PROJECT_DIR}:/app
       - ./config/php/5.6/php.ini:/usr/local/etc/php/conf.d/php.ini
     networks:
-      connect:
-        ipv4_address: 10.5.0.6
+      - connect
 
   php-7.0:
     image: maadamaceno/damabox_php7.0:latest
@@ -27,8 +25,7 @@ services:
       - ${PROJECT_DIR}:/app
       - ./config/php/7.0/php.ini:/usr/local/etc/php/conf.d/php.ini
     networks:
-      connect:
-        ipv4_address: 10.5.0.7
+      - connect
 
   php-7.1:
     image: maadamaceno/damabox_php7.1:latest
@@ -37,8 +34,7 @@ services:
       - ${PROJECT_DIR}:/app
       - ./config/php/7.1/php.ini:/usr/local/etc/php/conf.d/php.ini
     networks:
-      connect:
-        ipv4_address: 10.5.0.8
+      - connect
 
   nginx:
     image: maadamaceno/damabox_nginx:latest
@@ -49,8 +45,7 @@ services:
      - ./config/nginx/servers:/etc/nginx/sites-available
      - ${PROJECT_DIR}:/app
     networks:
-      connect:
-        ipv4_address: 10.5.0.9
+      - connect
 
   firebird:
     image: maadamaceno/damabox_firebird:latest
@@ -64,8 +59,7 @@ services:
     volumes:
       - ${FIREBIRD_DATADIR}:/databases
     networks:
-      connect:
-        ipv4_address: 10.5.0.10
+      - connect
 
 networks:
   connect:
@@ -75,4 +69,5 @@ networks:
     ipam:
      config:
        - subnet: 10.5.0.0/16
+         ip_range: 10.5.0.0/24
          gateway: 10.5.0.1
