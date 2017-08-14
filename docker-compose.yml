@@ -1,7 +1,7 @@
 version: "2"
 services:
   php-5.5:
-    image: damabox_php55:latest
+    image: damabox_php5.5:latest
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
@@ -11,7 +11,7 @@ services:
         ipv4_address: 10.5.0.5
 
   php-5.6:
-    image: damabox_php56:latest
+    image: damabox_php5.6:latest
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
@@ -31,7 +31,7 @@ services:
         ipv4_address: 10.5.0.7
 
   php-7.1:
-    image: damabox_php71:latest
+    image: damabox_php7.1:latest
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
