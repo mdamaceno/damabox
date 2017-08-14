@@ -1,7 +1,7 @@
 version: "2"
 services:
   php-5.5:
-    image: damabox_php5.5:latest
+    image: maadamaceno/damabox_php5.5:latest
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
@@ -11,7 +11,7 @@ services:
         ipv4_address: 10.5.0.5
 
   php-5.6:
-    image: damabox_php5.6:latest
+    image: maadamaceno/damabox_php5.6:latest
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
@@ -21,7 +21,7 @@ services:
         ipv4_address: 10.5.0.6
 
   php-7.0:
-    image: damabox_php70:latest
+    image: maadamaceno/damabox_php70:latest
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
@@ -31,7 +31,7 @@ services:
         ipv4_address: 10.5.0.7
 
   php-7.1:
-    image: damabox_php7.1:latest
+    image: maadamaceno/damabox_php7.1:latest
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
@@ -41,7 +41,7 @@ services:
         ipv4_address: 10.5.0.8
 
   nginx:
-    image: damabox_nginx:latest
+    image: maadamaceno/damabox_nginx:latest
     restart: always
     ports:
      - "${HTTP_PORT}:80"
@@ -53,7 +53,7 @@ services:
         ipv4_address: 10.5.0.9
 
   firebird:
-    image: damabox_firebird:latest
+    image: maadamaceno/damabox_firebird:latest
     restart: always
     environment:
       - FIREBIRD_USER=${FIREBIRD_ROOT_USER}
