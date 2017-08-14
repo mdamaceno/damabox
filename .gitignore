@@ -1,7 +1,4 @@
 .env
-/config/php/5.6/*.ini
-/config/php/7.0/*.ini
-/config/php/7.1/*.ini
 
 /config/nginx/servers/*.conf
 !/config/nginx/servers/*-example
