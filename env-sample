@@ -1,15 +1,18 @@
 ###########################################
-# Project - Apache
+# Project - Nginx
 ###########################################
 
 PROJECT_DIR=./data/www
-HTTP_PORT=8080
+
+HTTP_PORT=80
+NGINX_LOG_DIR=./logs/nginx
+NGINX_SERVERS_DIR=./config/nginx/servers
 
 ###########################################
 # Firebird
 ###########################################
 
-FIREBIRD_ROOT_USER=user
-FIREBIRD_ROOT_PASSWORD=password
-FIREBIRD_PORT=3500
-FIREBIRD_DATADIR=./data/firebird
+FIREBIRD_ROOT_USER=sysdba
+FIREBIRD_ROOT_PASSWORD=masterkey
+FIREBIRD_PORT=3050
+FIREBIRD_DATADIR=/home/dunasplus/Projects/db/firebird
