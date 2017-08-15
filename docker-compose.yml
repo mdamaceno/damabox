@@ -1,4 +1,4 @@
-version: "2"
+version: "2.2"
 services:
   php-5.5:
     image: maadamaceno/damabox_php5.5:latest
@@ -8,6 +8,8 @@ services:
       - ./config/php/5.5/php.ini:/usr/local/etc/php/conf.d/php.ini
     networks:
       - connect
+    depends_on:
+      - nginx
 
   php-5.6:
     image: maadamaceno/damabox_php5.6:latest
@@ -17,24 +19,31 @@ services:
       - ./config/php/5.6/php.ini:/usr/local/etc/php/conf.d/php.ini
     networks:
       - connect
+    depends_on:
+      - nginx
 
   php-7.0:
     image: maadamaceno/damabox_php7.0:latest
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
-      - ./config/php/7.0/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./config/php/7.0:/usr/local/etc/php
     networks:
       - connect
+    depends_on:
+      - nginx
 
   php-7.1:
     image: maadamaceno/damabox_php7.1:latest
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
-      - ./config/php/7.1/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./config/php/7.1:/usr/local/etc/php
+      - ./config/php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
     networks:
       - connect
+    depends_on:
+      - nginx
 
   nginx:
     image: maadamaceno/damabox_nginx:latest
@@ -44,6 +53,7 @@ services:
     volumes:
      - ./config/nginx/servers:/etc/nginx/sites-available
      - ${PROJECT_DIR}:/app
+     - ./logs:/logs
     networks:
       - connect
 
