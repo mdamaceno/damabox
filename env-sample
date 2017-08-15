@@ -2,7 +2,7 @@
 # Project - Apache
 ###########################################
 
-PROJECT_DIR=project/directory/path
+PROJECT_DIR=./data/www
 HTTP_PORT=8080
 
 ###########################################
@@ -12,4 +12,4 @@ HTTP_PORT=8080
 FIREBIRD_ROOT_USER=user
 FIREBIRD_ROOT_PASSWORD=password
 FIREBIRD_PORT=3500
-FIREBIRD_DATADIR=database/directory/path
+FIREBIRD_DATADIR=./data/firebird
