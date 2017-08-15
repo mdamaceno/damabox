@@ -9,3 +9,6 @@
 !/config/nginx/servers/*-example
 
 /logs/nginx/*.log
+
+/data/firebird/*
+/data/www/*
