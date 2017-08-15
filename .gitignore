@@ -8,4 +8,4 @@
 /config/nginx/servers/*.conf
 !/config/nginx/servers/*-example
 
-/logs/*.log
+/logs/nginx/*.log
