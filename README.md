@@ -73,6 +73,8 @@ server {
 
 Para sobrescrever as configurações default do PHP, crie um arquivo **php.ini** dentro do diretório **config/php/VERSAO-UTILIZADA** com os parâmetros que deseja sobrescrever.
 
+Por padrão, os arquivos de banco de dados ficam em **data/databases/TIPO-DE-BANCO-DE-DADOS**. Os diretórios com seus projetos, por padrão, devem estar no diretório **data/www**. Esses diretórios podem ser alterados pelo arquivo **.env**.
+
 ## Contribuições
 
 Toda contribuição é bem vinda!
