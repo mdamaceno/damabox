@@ -80,8 +80,8 @@ Por padrão, os arquivos de banco de dados ficam em **data/databases/TIPO-DE-BAN
 As imagens de PHP utilizadas pelo Damabox não possuem o Composer instalado. Para utiliza-lo em algum projeto PHP, recomendamos o uso da imagem oficial. O comando a ser executado no terminal deve ser o seguinte:
 
 ```
-$ docker run -it PATH/DO/PROJETO/PHP:/app composer install // para instalar os pacotes
-$ docker run -it PATH/DO/PROJETO/PHP:/app composer update // para atualizar os pacotes
+$ docker run -it -v PATH/DO/PROJETO/PHP:/app composer install // para instalar os pacotes
+$ docker run -it -v PATH/DO/PROJETO/PHP:/app composer update // para atualizar os pacotes
 ```
 
 ## Contribuições
