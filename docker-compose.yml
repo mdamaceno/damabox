@@ -28,7 +28,7 @@ services:
       - connect
 
   php-7.1:
-    image: damabox_php7.1:latest
+    image: maadamaceno/damabox_php7.1:latest
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
