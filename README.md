@@ -25,7 +25,15 @@ $ docker-compose up
 Segue um exemplo do arquivo **.env**:
 
 ```
+###########################################
+# Damabox
+###########################################
+
 DB_CONFIG_DIR=./config/db
+PHP55_CONFIG_DIR=./config/php/5.5
+PHP56_CONFIG_DIR=./config/php/5.6
+PHP70_CONFIG_DIR=./config/php/7.0
+PHP71_CONFIG_DIR=./config/php/7.1
 
 ###########################################
 # Project - Nginx
