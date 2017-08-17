@@ -4,11 +4,11 @@ O Damabox é uma alternativa ao XAMPP construída sobre o Docker. Com ele, você
 
 ## Modo de usar
 
-Crie um arquivo **.env** na raíz do Damabox se baseando no arquivo env-sample. Você pode serguir os passos abaixo:
+Crie um arquivo **.env** na raíz do Damabox se baseando no arquivo **env-example**. Você pode serguir os passos abaixo:
 
 ``` bash
 # Crie um arquivo de configuração de ambiente
-$ cp env-sample .env
+$ cp env-example .env
 
 # Edite o arquivo de configuração (opcional)
 $ vim .env
