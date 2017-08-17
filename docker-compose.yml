@@ -5,8 +5,7 @@ services:
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
-      - ./config/php/5.5:/usr/local/etc/php
-      - ./config/php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ${PHP55_CONFIG_DIR}:/usr/local/etc/php
     networks:
       - connect
 
@@ -15,8 +14,7 @@ services:
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
-      - ./config/php/5.6:/usr/local/etc/php
-      - ./config/php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ${PHP56_CONFIG_DIR}:/usr/local/etc/php
     networks:
       - connect
 
@@ -25,8 +23,7 @@ services:
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
-      - ./config/php/7.0:/usr/local/etc/php
-      - ./config/php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ${PHP70_CONFIG_DIR}:/usr/local/etc/php
     networks:
       - connect
 
@@ -35,8 +32,7 @@ services:
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
-      - ./config/php/7.1:/usr/local/etc/php
-      - ./config/php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ${PHP71_CONFIG_DIR}:/usr/local/etc/php
     networks:
       - connect
 
