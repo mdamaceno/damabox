@@ -1,3 +1,5 @@
+DB_CONFIG_DIR=./config/db
+
 ###########################################
 # Project - Nginx
 ###########################################
@@ -16,3 +18,13 @@ FIREBIRD_ROOT_USER=sysdba
 FIREBIRD_ROOT_PASSWORD=masterkey
 FIREBIRD_PORT=3050
 FIREBIRD_DATADIR=./data/databases/firebird
+
+###########################################
+# MySQL
+###########################################
+
+MYSQL_TYPE=mysql
+MYSQL_VERSION=5.7
+MYSQL_PORT=3306
+MYSQL_ROOT_PASSWORD=root
+MYSQL_DATADIR=./data/databases/mysql

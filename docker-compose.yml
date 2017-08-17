@@ -31,7 +31,7 @@ services:
       - connect
 
   php-7.1:
-    image: maadamaceno/damabox_php7.1:latest
+    image: damabox_php7.1:latest
     restart: always
     volumes:
       - ${PROJECT_DIR}:/app
@@ -51,6 +51,17 @@ services:
      - ${PROJECT_DIR}:/app
     networks:
       - connect
+
+  mysql:
+    image: ${MYSQL_TYPE}:${MYSQL_VERSION}
+    restart: always
+    ports:
+      - "${MYSQL_PORT}:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ${MYSQL_DATADIR}/${MYSQL_VERSION}:/var/lib/mysql
+      - ${DB_CONFIG_DIR}/${MYSQL_TYPE}:/etc/mysql/conf.d
 
   firebird:
     image: maadamaceno/damabox_firebird:latest

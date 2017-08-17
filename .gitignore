@@ -10,7 +10,17 @@
 /config/nginx/servers/*.conf
 !/config/nginx/servers/*-example
 
+/config/db/mysql/*.cnf
+!/config/db/mysql/*-example
+/config/db/percona/*.cnf
+!/config/db/percona/*-example
+/config/db/mariadb/*.cnf
+!/config/db/mariadb/*-example
+
 /logs/nginx/*.log
 
-/data/firebird/*
+/data/databases/firebird/*
+/data/databases/mysql/*
+/data/databases/percona/*
+/data/databases/mariadb/*
 /data/www/*
