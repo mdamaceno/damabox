@@ -43,6 +43,16 @@ FIREBIRD_ROOT_USER=sysdba
 FIREBIRD_ROOT_PASSWORD=masterkey
 FIREBIRD_PORT=3050
 FIREBIRD_DATADIR=./data/databases/firebird
+
+###########################################
+# MySQL
+###########################################
+
+MYSQL_TYPE=mysql
+MYSQL_VERSION=5.7
+MYSQL_PORT=3306
+MYSQL_ROOT_PASSWORD=root
+MYSQL_DATADIR=./data/databases/mysql
 ```
 
 Dentro da pasta **config/nginx/servers** há um exemplo de configuração de server do Nginx que deverá ser duplicado com extensão **.conf**. O conteúdo do arquivo pode ser como no exemplo abaixo:
@@ -97,8 +107,8 @@ Não se esqueça de dar uma estrela no repositório :)
 - ~~Suporte ao PHP~~
 - ~~Suporte ao Nginx~~
 - ~~Suporte ao Firebird~~
+- ~~Suporte ao MySQL~~
 - Suporte ao Apache
-- Suporte ao MySQL
 - Suporte ao PostgreSQL
 - Suporte ao MongoDB
 - Suporte ao Ruby
