@@ -25,6 +25,8 @@ $ docker-compose up
 Segue um exemplo do arquivo **.env**:
 
 ```
+DB_CONFIG_DIR=./config/db
+
 ###########################################
 # Project - Nginx
 ###########################################
