@@ -20,7 +20,12 @@
 /logs/nginx/*.log
 
 /data/databases/firebird/*
+!/data/databases/firebird/.gitkeep
 /data/databases/mysql/*
+!/data/databases/mysql/.gitkeep
 /data/databases/percona/*
+!/data/databases/percona/.gitkeep
 /data/databases/mariadb/*
+!/data/databases/mariadb/.gitkeep
 /data/www/*
+!/data/www/.gitkeep
