@@ -58,6 +58,8 @@ services:
     volumes:
       - ${MYSQL_DATADIR:-./data/databases/mysql}/${MYSQL_VERSION:-5.7}:/var/lib/mysql
       - ${DB_CONFIG_DIR:-./config/db}/${MYSQL_TYPE:-mysql}:/etc/mysql/conf.d
+    networks:
+      - connect
 
   firebird:
     image: maadamaceno/damabox_firebird:latest
