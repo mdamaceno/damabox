@@ -43,7 +43,7 @@ PROJECT_DIR=./data/www
 
 HTTP_PORT=80
 NGINX_LOG_DIR=./logs/nginx
-NGINX_SERVERS_DIR=./config/nginx/servers
+NGINX_CONFIG_DIR=./config/nginx
 
 ###########################################
 # Firebird
@@ -76,8 +76,8 @@ server {
 
     autoindex on;
 
-    access_log /logs/access.log;
-    error_log /logs/error.log;
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
 
     location ~ \.php$ {
         try_files $uri =404;

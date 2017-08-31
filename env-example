@@ -16,7 +16,7 @@ PROJECT_DIR=./data/www
 
 HTTP_PORT=80
 NGINX_LOG_DIR=./logs/nginx
-NGINX_SERVERS_DIR=./config/nginx/servers
+NGINX_CONFIG_DIR=./config/nginx
 
 ###########################################
 # Firebird
