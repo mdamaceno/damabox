@@ -7,8 +7,8 @@
 /config/php/7.0/*.ini
 /config/php/7.1/*.ini
 
-/config/nginx/servers/*.conf
-!/config/nginx/servers/*-example
+/config/nginx/sites-available/*.conf
+!/config/nginx/sites-available/*-example
 
 /config/db/mysql/*.cnf
 !/config/db/mysql/*-example
