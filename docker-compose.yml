@@ -62,15 +62,15 @@ services:
       - connect
 
   firebird:
-    image: maadamaceno/damabox_firebird:latest
+    image: maadamaceno/damabox_hqbird:${FIREBIRD_VERSION:-2.5-sc}
     restart: always
     environment:
       - FIREBIRD_USER=${FIREBIRD_ROOT_USER:-sysdba}
       - FIREBIRD_PASSWORD=${FIREBIRD_ROOT_PASSWORD:-masterkey}
-      - ISC_PASSWORD=${FIREBIRD_ROOT_PASSWORD:-masterkey}
     ports:
       - "${FIREBIRD_PORT:-3050}:3050"
     volumes:
+      - ${FIREBIRD_CONFIG_FILE:-./config/db/firebird/firebird.conf}:/opt/firebird/firebird.conf
       - ${FIREBIRD_DATADIR:-./data/databases/firebird}:/databases
     networks:
       - connect
