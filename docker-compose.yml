@@ -70,6 +70,7 @@ services:
     ports:
       - "${FIREBIRD_PORT:-3050}:3050"
     volumes:
+      - ${FIREBIRD_CONFIG_FILE:-./config/db/firebird/firebird.conf}:/opt/firebird/firebird.conf
       - ${FIREBIRD_DATADIR:-./data/databases/firebird}:/databases
     networks:
       - connect
