@@ -2,6 +2,11 @@
 *.DS_Store
 !.gitkeep
 
+!/config/ssl/certs/.gitkeep
+/config/ssl/certs/*
+!/config/ssl/private/.gitkeep
+/config/ssl/private/*
+
 /config/php/5.5/*.ini
 /config/php/5.6/*.ini
 /config/php/7.0/*.ini
