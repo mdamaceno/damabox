@@ -19,3 +19,36 @@ server {
         fastcgi_param PATH_INFO $fastcgi_path_info;
     }
 }
+
+# server {
+#     listen 80 default_server;
+#     listen [::]:80 default_server;
+#     server_name domain.name;
+#     return 302 https://$server_name$request_uri;
+# }
+
+# server {
+#     listen  443;
+#     listen  [::]:443;
+# 
+#     root /app;
+#     server_name domain.name;
+#     index index.php index.html;
+# 
+#     ssl    on;
+#     ssl_certificate     /etc/ssl/certs/nginx-selfsigned.crt;
+#     ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
+# 
+#     access_log /var/log/nginx/access.log;
+#     error_log /var/log/nginx/error.log;
+# 
+#     location ~ \.php$ {
+#         try_files $uri =404;
+#         fastcgi_split_path_info ^(.+\.php)(/.+)$;
+#         fastcgi_pass php-7.1:9000;
+#         fastcgi_index index.php;
+#         include fastcgi_params;
+#         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+#         fastcgi_param PATH_INFO $fastcgi_path_info;
+#     }
+# }
