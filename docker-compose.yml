@@ -36,6 +36,15 @@ services:
     networks:
       - connect
 
+  php-7.2:
+    image: maadamaceno/damabox_php7.2:latest
+    restart: always
+    volumes:
+      - ${PROJECT_DIR:-./data/www}:/app
+      - ${PHP71_CONFIG_DIR:-./config/php/7.2}:/usr/local/etc/php
+    networks:
+      - connect
+
   nginx:
     image: maadamaceno/damabox_nginx:latest
     restart: always
