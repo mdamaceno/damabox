@@ -11,6 +11,7 @@
 /config/php/5.6/*.ini
 /config/php/7.0/*.ini
 /config/php/7.1/*.ini
+/config/php/7.2/*.ini
 
 /config/nginx/sites-available/*.conf
 !/config/nginx/sites-available/*-example
