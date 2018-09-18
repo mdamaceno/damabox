@@ -1,7 +1,9 @@
 version: "2.2"
 services:
   php-5.5:
-    image: maadamaceno/damabox_php5.5:latest
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile-php5.5
     restart: always
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
@@ -10,7 +12,9 @@ services:
       - connect
 
   php-5.6:
-    image: maadamaceno/damabox_php5.6:latest
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile-php5.6
     restart: always
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
@@ -19,7 +23,9 @@ services:
       - connect
 
   php-7.0:
-    image: maadamaceno/damabox_php7.0:latest
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile-php7.1
     restart: always
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
@@ -28,7 +34,9 @@ services:
       - connect
 
   php-7.1:
-    image: maadamaceno/damabox_php7.1:latest
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile-php7.1
     restart: always
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
@@ -46,17 +54,17 @@ services:
       - connect
 
   nginx:
-    image: maadamaceno/damabox_nginx:latest
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile-nginx
     restart: always
     ports:
      - "${HTTP_PORT:-80}:80"
      - "${HTTP_PORT_SSL:-443}:443"
     volumes:
-     - ${NGINX_CONFIG_DIR:-./config/nginx}:/etc/nginx/conf
-     - ${NGINX_LOG_DIR:-./logs/nginx}:/var/log/nginx
+     - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
+     - ./config/nginx/sites-available:/etc/nginx/conf.d
      - ${PROJECT_DIR:-./data/www}:/app
-     - ${SSL_CERTS_DIR:-./config/ssl/certs}:/etc/ssl/certs
-     - ${SSL_PRIVATE_DIR:-./config/ssl/private}:/etc/ssl/private
     networks:
       - connect
 
@@ -74,7 +82,10 @@ services:
       - connect
 
   firebird:
-    image: maadamaceno/damabox_hqbird:${FIREBIRD_VERSION:-2.5-sc}
+    # image: maadamaceno/damabox_hqbird:${FIREBIRD_VERSION:-2.5-sc}
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile-firebird2.5
     restart: always
     environment:
       - FIREBIRD_USER=${FIREBIRD_ROOT_USER:-sysdba}
