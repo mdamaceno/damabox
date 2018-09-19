@@ -53,11 +53,13 @@ services:
       - connect
 
   php-7.2:
-    image: maadamaceno/damabox_php7.2:latest
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile-php7.2
     restart: always
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
-      - ${PHP71_CONFIG_DIR:-./config/php/7.2}:/usr/local/etc/php
+      - ${PHP72_CONFIG_DIR:-./config/php/7.2}:/usr/local/etc/php
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:

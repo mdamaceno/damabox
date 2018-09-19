@@ -27,7 +27,7 @@ $ vim config/php/7.1/php.ini
 
 Segue um exemplo do arquivo `.env`:
 
-```
+```bash
 ###########################################
 # Damabox
 ###########################################
