@@ -13,13 +13,13 @@ ENV DBPATH=/databases
 
 RUN bash -c "mkdir /databases"
 
-COPY ./resources/firebird/scripts/install_fb25_hqbird_server_2017r2.sh .
+COPY ./resources/firebird/2.5/scripts/install_fb25_hqbird_server_2017r2.sh .
 
 RUN chmod a+x install_fb25_hqbird_server_2017r2.sh && \
   bash -c "./install_fb25_hqbird_server_2017r2.sh"
 
-COPY ./resources/firebird/config/firebird/conf/firebird.conf ${PREFIX}
-COPY ./resources/firebird/config/firebird/UDF ${PREFIX}/UDF
+COPY ./resources/firebird/2.5/config/firebird/conf/firebird.conf ${PREFIX}
+COPY ./resources/firebird/2.5/config/firebird/UDF ${PREFIX}/UDF
 
 RUN bash -c "echo \"thread\" | ${PREFIX}/bin/changeMultiConnectMode.sh"
 
@@ -32,13 +32,13 @@ VOLUME ["/databases", "/opt/firebird"]
 RUN yum clean all && \
   bash -c "rm -rf /var/cache/yum"
 
-COPY /resources/firebird/config/hqbird/conf /opt/hqbird/conf
+COPY /resources/firebird/2.5/config/hqbird/conf /opt/hqbird/conf
 RUN chmod a+w /opt/hqbird/conf/access.properties
 
-COPY ./resources/firebird/scripts/docker-entrypoint.sh .
+COPY ./resources/firebird/2.5/scripts/docker-entrypoint.sh .
 RUN chmod 777 /docker-entrypoint.sh
 
-COPY ./resources/firebird/run.sh .
+COPY ./resources/firebird/2.5/run.sh .
 RUN chmod a+x run.sh
 
 ENTRYPOINT /docker-entrypoint.sh /run.sh
