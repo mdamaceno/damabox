@@ -97,14 +97,11 @@ services:
       - connect
 
   firebird:
-    # image: maadamaceno/damabox_hqbird:${FIREBIRD_VERSION:-2.5-sc}
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile-firebird2.5
     restart: always
     environment:
-      - FIREBIRD_USER=${FIREBIRD_ROOT_USER:-sysdba}
-      - FIREBIRD_PASSWORD=${FIREBIRD_ROOT_PASSWORD:-masterkey}
       - TZ=${TIMEZONE:-Etc/UTC}
     ports:
       - "${FIREBIRD_PORT:-3050}:3050"

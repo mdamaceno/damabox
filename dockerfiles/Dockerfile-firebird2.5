@@ -13,10 +13,10 @@ ENV DBPATH=/databases
 
 RUN bash -c "mkdir /databases"
 
-COPY ./resources/firebird/2.5/scripts/install_fb25_hqbird_server_2017r2.sh .
+COPY ./resources/firebird/2.5/scripts/install_fb25_hqbird_server_2018.sh .
 
-RUN chmod a+x install_fb25_hqbird_server_2017r2.sh && \
-  bash -c "./install_fb25_hqbird_server_2017r2.sh"
+RUN chmod a+x install_fb25_hqbird_server_2018.sh && \
+  bash -c "./install_fb25_hqbird_server_2018.sh"
 
 COPY ./resources/firebird/2.5/config/firebird/conf/firebird.conf ${PREFIX}
 COPY ./resources/firebird/2.5/config/firebird/UDF ${PREFIX}/UDF
