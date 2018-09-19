@@ -65,7 +65,9 @@ MYSQL_DATADIR=./data/databases/mysql
 
 ### Nginx
 
-Para configurar o Nginx, pode usar o arquivo `config/nginx/sites-available/default-example` como exemplo.
+Dentro do diretório `config/nginx` há o arquivo `nginx.conf-example`. Faça uma cópia dele com o nome `nginx.conf`. Este arquivo pode ser alterado conforme sua necessidade.
+
+Para configurar os hosts no Nginx, pode usar o arquivo `config/nginx/sites-available/default-example` como exemplo.
 
 ### PHP
 
