@@ -2,6 +2,11 @@
 
 O **Damabox** é uma alternativa ao XAMPP construída sobre o Docker. Com ele, você pode rodar sua aplicação PHP com servidor Nginx.
 
+## Pré-requisitos
+
+- [Docker](https://docs.docker.com/install/)
+- [Docker Compose](https://docs.docker.com/compose/)
+
 ## Modo de usar
 
 Crie um arquivo `.env` na raíz do Damabox se baseando no arquivo `env-example`. Você pode seguir os passos abaixo:
@@ -18,8 +23,6 @@ $ vim .env
 # Verifique o arquivo de exemplo config/php/7.1/php.ini-example
 $ vim config/php/7.1/php.ini
 
-# Inicie todos os containers
-$ docker-compose up --build
 ```
 
 Segue um exemplo do arquivo `.env`:
@@ -80,6 +83,16 @@ Por padrão, os arquivos de banco de dados ficam em `data/databases/[TIPO_DE_BAN
 ### Projetos
 
 O diretório `data/www/` é o local padrão para armazenar os projetos, mas isso pode ser alterado no arquivo `.env` através da variável `PROJECT_DIR=./data/www`.
+
+Depois de feitas as configurações necessárias, o Damabox pode ser inicializado com o seguinte comando:
+
+```bash
+# Inicie todos os containers
+$ docker-compose up --build
+
+# Para iniciar containers específicos:
+$ docker-compose up --build servico1 servico2
+```
 
 ## Contribuições
 
