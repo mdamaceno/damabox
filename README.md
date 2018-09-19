@@ -51,9 +51,6 @@ NGINX_CONFIG_DIR=./config/nginx
 # Firebird
 ###########################################
 
-FIREBIRD_ROOT_USER=sysdba
-FIREBIRD_ROOT_PASSWORD=masterkey
-FIREBIRD_PORT=3050
 FIREBIRD_DATADIR=./data/databases/firebird
 
 ###########################################
@@ -62,7 +59,6 @@ FIREBIRD_DATADIR=./data/databases/firebird
 
 MYSQL_TYPE=mysql
 MYSQL_VERSION=5.7
-MYSQL_PORT=3306
 MYSQL_ROOT_PASSWORD=root
 MYSQL_DATADIR=./data/databases/mysql
 ```
@@ -94,6 +90,10 @@ $ docker-compose up --build
 # Para iniciar containers específicos:
 $ docker-compose up --build servico1 servico2
 ```
+
+## Acesso
+
+Para acessar os containers a partir do seu host deve ser usado o endereço IP `10.5.0.1` que é definido no arquivo `docker-compose.yml`. Ex.: `10.5.0.1:3050` para acessar o banco de dados Firebird, `10.5.0.1:3306` para acesar banco de dados MySQL.
 
 ## Contribuições
 
