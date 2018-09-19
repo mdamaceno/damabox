@@ -85,8 +85,6 @@ services:
   mysql:
     image: ${MYSQL_TYPE:-mysql}:${MYSQL_VERSION:-5.7}
     restart: always
-    ports:
-      - "${MYSQL_PORT:-3306}:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root}
       - TZ=${TIMEZONE:-Etc/UTC}
@@ -103,10 +101,6 @@ services:
     restart: always
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
-    ports:
-      - "${FIREBIRD_PORT:-3050}:3050"
-      - "${HQBIRD_FRONT_PORT:-8082}:8082"
-      - "${HQBIRD_LICENSE_PORT:-8765}:8765"
     volumes:
       - ${FIREBIRD_CONFIG_FILE:-./config/db/firebird/firebird.conf}:/opt/firebird/firebird.conf
       - ${FIREBIRD_DATADIR:-./data/databases/firebird}:/databases
