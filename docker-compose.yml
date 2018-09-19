@@ -96,7 +96,7 @@ services:
     networks:
       - connect
 
-  firebird:
+  firebird-2.5:
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile-firebird2.5
