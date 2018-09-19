@@ -1,10 +1,10 @@
 # Damabox
 
-O Damabox é uma alternativa ao XAMPP construída sobre o Docker. Com ele, você pode rodar sua aplicação PHP com servidor Nginx.
+O **Damabox** é uma alternativa ao XAMPP construída sobre o Docker. Com ele, você pode rodar sua aplicação PHP com servidor Nginx.
 
 ## Modo de usar
 
-Crie um arquivo **.env** na raíz do Damabox se baseando no arquivo **env-example**. Você pode serguir os passos abaixo:
+Crie um arquivo `.env` na raíz do Damabox se baseando no arquivo `env-example`. Você pode seguir os passos abaixo:
 
 ``` bash
 # Crie um arquivo de configuração de ambiente
@@ -19,16 +19,17 @@ $ vim .env
 $ vim config/php/7.1/php.ini
 
 # Inicie todos os containers
-$ docker-compose up
+$ docker-compose up --build
 ```
 
-Segue um exemplo do arquivo **.env**:
+Segue um exemplo do arquivo `.env`:
 
 ```
 ###########################################
 # Damabox
 ###########################################
 
+PROJECT_DIR=./data/www
 DB_CONFIG_DIR=./config/db
 PHP55_CONFIG_DIR=./config/php/5.5
 PHP56_CONFIG_DIR=./config/php/5.6
@@ -39,10 +40,7 @@ PHP71_CONFIG_DIR=./config/php/7.1
 # Project - Nginx
 ###########################################
 
-PROJECT_DIR=./data/www
-
 HTTP_PORT=80
-NGINX_LOG_DIR=./logs/nginx
 NGINX_CONFIG_DIR=./config/nginx
 
 ###########################################
@@ -65,52 +63,27 @@ MYSQL_ROOT_PASSWORD=root
 MYSQL_DATADIR=./data/databases/mysql
 ```
 
-Dentro da pasta **config/nginx/servers** há um exemplo de configuração de server do Nginx que deverá ser duplicado com extensão **.conf**. O conteúdo do arquivo pode ser como no exemplo abaixo:
+### Nginx
 
-```
-server {
-    listen   80;
+Para configurar o Nginx, pode usar o arquivo `config/nginx/sites-available/default-example` como exemplo.
 
-    root /app;
-    index index.php index.html;
+### PHP
 
-    autoindex on;
+Para ativar/desativar extensões e/ou alterar outras configurações do PHP, pode fazer isso através do arquivo `config/php/[VERSAO_DO_PHP]/php.ini`. Dentro do diretório de cada versão há um arquivo de exemplo que pode ser usado como modelo.
 
-    access_log /var/log/nginx/access.log;
-    error_log /var/log/nginx/error.log;
+### Banco de dados
 
-    location ~ \.php$ {
-        try_files $uri =404;
-        fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass php-7.1:9000;
-        fastcgi_index index.php;
-        include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param PATH_INFO $fastcgi_path_info;
-    }
-}
-```
+Por padrão, os arquivos de banco de dados ficam em `data/databases/[TIPO_DE_BANCO_DE_DADOS]`.
 
-Para sobrescrever as configurações default do PHP, crie um arquivo **php.ini** dentro do diretório **config/php/VERSAO-UTILIZADA** com os parâmetros que deseja sobrescrever.
+### Projetos
 
-Por padrão, os arquivos de banco de dados ficam em **data/databases/TIPO-DE-BANCO-DE-DADOS**. Os diretórios com seus projetos, por padrão, devem estar no diretório **data/www**. Esses diretórios podem ser alterados pelo arquivo **.env**.
+O diretório `data/www/` é o local padrão para armazenar os projetos, mas isso pode ser alterado no arquivo `.env` através da variável `PROJECT_DIR=./data/www`.
 
 ## Contribuições
 
 Toda contribuição é bem vinda!
 
-Se gostou do projeto e quiser contribuir, faça um clone do projeto. Você também pode reportar bugs caso ache algum problema.
+Se gostou do projeto e quiser contribuir, faça um clone do projeto e mande um pull request. Você também pode reportar bugs caso encontre algum problema.
 
 Não se esqueça de dar uma estrela no repositório :)
 
-## Todo
-
-- ~~Suporte ao PHP~~
-- ~~Suporte ao Nginx~~
-- ~~Suporte ao Firebird~~
-- ~~Suporte ao MySQL~~
-- Suporte ao Apache
-- Suporte ao PostgreSQL
-- Suporte ao MongoDB
-- Suporte ao Ruby
-- Suporte ao Node.js
