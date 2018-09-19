@@ -38,6 +38,7 @@ PHP55_CONFIG_DIR=./config/php/5.5
 PHP56_CONFIG_DIR=./config/php/5.6
 PHP70_CONFIG_DIR=./config/php/7.0
 PHP71_CONFIG_DIR=./config/php/7.1
+TIMEZONE=America/Sao_Paulo
 
 ###########################################
 # Project - Nginx

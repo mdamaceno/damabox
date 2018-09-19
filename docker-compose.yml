@@ -8,6 +8,8 @@ services:
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
       - ${PHP55_CONFIG_DIR:-./config/php/5.5}:/usr/local/etc/php
+    environment:
+      - TZ=${TIMEZONE:-Etc/UTC}
     networks:
       - connect
 
@@ -19,6 +21,8 @@ services:
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
       - ${PHP56_CONFIG_DIR:-./config/php/5.6}:/usr/local/etc/php
+    environment:
+      - TZ=${TIMEZONE:-Etc/UTC}
     networks:
       - connect
 
@@ -30,6 +34,8 @@ services:
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
       - ${PHP70_CONFIG_DIR:-./config/php/7.0}:/usr/local/etc/php
+    environment:
+      - TZ=${TIMEZONE:-Etc/UTC}
     networks:
       - connect
 
@@ -41,6 +47,8 @@ services:
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
       - ${PHP71_CONFIG_DIR:-./config/php/7.1}:/usr/local/etc/php
+    environment:
+      - TZ=${TIMEZONE:-Etc/UTC}
     networks:
       - connect
 
@@ -50,6 +58,8 @@ services:
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
       - ${PHP71_CONFIG_DIR:-./config/php/7.2}:/usr/local/etc/php
+    environment:
+      - TZ=${TIMEZONE:-Etc/UTC}
     networks:
       - connect
 
@@ -61,6 +71,8 @@ services:
     ports:
      - "${HTTP_PORT:-80}:80"
      - "${HTTP_PORT_SSL:-443}:443"
+    environment:
+      - TZ=${TIMEZONE:-Etc/UTC}
     volumes:
      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
      - ./config/nginx/sites-available:/etc/nginx/conf.d
@@ -75,6 +87,7 @@ services:
       - "${MYSQL_PORT:-3306}:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root}
+      - TZ=${TIMEZONE:-Etc/UTC}
     volumes:
       - ${MYSQL_DATADIR:-./data/databases/mysql}/${MYSQL_VERSION:-5.7}:/var/lib/mysql
       - ${DB_CONFIG_DIR:-./config/db}/${MYSQL_TYPE:-mysql}:/etc/mysql/conf.d
@@ -90,6 +103,7 @@ services:
     environment:
       - FIREBIRD_USER=${FIREBIRD_ROOT_USER:-sysdba}
       - FIREBIRD_PASSWORD=${FIREBIRD_ROOT_PASSWORD:-masterkey}
+      - TZ=${TIMEZONE:-Etc/UTC}
     ports:
       - "${FIREBIRD_PORT:-3050}:3050"
       - "${HQBIRD_FRONT_PORT:-8082}:8082"
