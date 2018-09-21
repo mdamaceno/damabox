@@ -88,9 +88,7 @@ Dentro do diretório `config/nginx` há o arquivo `nginx.conf-example`. Faça um
 
 Para configurar os hosts no Nginx, pode usar o arquivo `config/nginx/sites-available/default-example` como exemplo.
 
-!!! note ""
-    Na definição de `server_name`, o nome deve ter como sufixo o valor da variável `BIND_TLD_SUFFIX` (padrão: local).
-    Ex.: `server_name nome_do_projeto.local;`
+Na definição de `server_name`, o nome deve ter como sufixo o valor da variável `BIND_TLD_SUFFIX` (padrão: local). Ex.: `server_name nome_do_projeto.local;`
 
 ### PHP
 
