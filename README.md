@@ -88,6 +88,10 @@ Dentro do diretório `config/nginx` há o arquivo `nginx.conf-example`. Faça um
 
 Para configurar os hosts no Nginx, pode usar o arquivo `config/nginx/sites-available/default-example` como exemplo.
 
+!!! note ""
+    Na definição de `server_name`, o nome deve ter como sufixo o valor da variável `BIND_TLD_SUFFIX` (padrão: local).
+    Ex.: `server_name nome_do_projeto.local;`
+
 ### PHP
 
 Para ativar/desativar extensões e/ou alterar outras configurações do PHP, pode fazer isso através do arquivo `config/php/[VERSAO_DO_PHP]/php.ini`. Dentro do diretório de cada versão há um arquivo de exemplo que pode ser usado como modelo.
@@ -113,6 +117,8 @@ $ docker-compose up --build servico1 servico2
 ## Acesso
 
 Para acessar os containers a partir do seu host deve ser usado o endereço IP `10.5.0.1` que é definido no arquivo `docker-compose.yml`. Ex.: `10.5.0.1:3050` para acessar o banco de dados Firebird, `10.5.0.1:3306` para acesar banco de dados MySQL.
+
+Depois de feitas todas as configurações na aplicação do Damabox, é necessário incluir o IP definido na variável `BIND_IP` como servidor de DNS na sua rede local.
 
 ## Contribuições
 
