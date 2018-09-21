@@ -33,24 +33,42 @@ Segue um exemplo do arquivo `.env`:
 ###########################################
 
 PROJECT_DIR=./data/www
+
 DB_CONFIG_DIR=./config/db
 PHP55_CONFIG_DIR=./config/php/5.5
 PHP56_CONFIG_DIR=./config/php/5.6
 PHP70_CONFIG_DIR=./config/php/7.0
 PHP71_CONFIG_DIR=./config/php/7.1
+PHP72_CONFIG_DIR=./config/php/7.2
+
 TIMEZONE=America/Sao_Paulo
+
+GATEWAY=10.5.0.1
+SUBNET=10.5.0.0/24
+IP_RANGE=10.5.0.0/24
+
+###########################################
+# Bind
+###########################################
+
+BIND_IP=10.5.0.10
+BIND_TLD_SUFFIX=local
+BIND_EXTRA_HOSTS=""
+BIND_DNS_RESOLVER=8.8.8.8,8.8.4.4
 
 ###########################################
 # Project - Nginx
 ###########################################
 
 HTTP_PORT=80
+HTTPS_PORT=443
 NGINX_CONFIG_DIR=./config/nginx
 
 ###########################################
 # Firebird
 ###########################################
 
+FIREBIRD_PORT=3050
 FIREBIRD_DATADIR=./data/databases/firebird
 
 ###########################################
@@ -58,6 +76,7 @@ FIREBIRD_DATADIR=./data/databases/firebird
 ###########################################
 
 MYSQL_TYPE=mysql
+MYSQL_PORT=3306
 MYSQL_VERSION=5.7
 MYSQL_ROOT_PASSWORD=root
 MYSQL_DATADIR=./data/databases/mysql
