@@ -35,6 +35,8 @@ services:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:
       - connect
+    depends_on:
+      - nginx
 
   php-5.6:
     build:
@@ -51,6 +53,8 @@ services:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:
       - connect
+    depends_on:
+      - nginx
 
   php-7.0:
     build:
@@ -67,6 +71,8 @@ services:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:
       - connect
+    depends_on:
+      - nginx
 
   php-7.1:
     build:
@@ -85,6 +91,8 @@ services:
       - connect
     depends_on:
       - bind
+    depends_on:
+      - nginx
 
   php-7.2:
     build:
@@ -101,6 +109,8 @@ services:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:
       - connect
+    depends_on:
+      - nginx
 
   nginx:
     build:
