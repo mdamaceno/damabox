@@ -1,7 +1,7 @@
 version: "2.2"
 services:
   bind:
-    image: cytopia/bind
+    image: cytopia/bind:0.15
     restart: always
     hostname: bind
     dns:
