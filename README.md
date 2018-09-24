@@ -7,6 +7,14 @@ O **Damabox** é uma alternativa ao XAMPP construída sobre o Docker. Com ele, v
 - [Docker](https://docs.docker.com/install/)
 - [Docker Compose](https://docs.docker.com/compose/)
 
+## Instalação
+
+Para instalar o Damabox, [baixe a última versão (0.2.0) em formato zip ou tar.gz](https://github.com/mdamaceno/damabox/releases/tag/v0.2.0), ou execute o seguinte comando no terminal:
+
+```bash
+$ git clone --branch 0.2.0 https://github.com/mdamaceno/damabox.git && cd damabox
+```
+
 ## Modo de usar
 
 Crie um arquivo `.env` na raíz do Damabox se baseando no arquivo `env-example`. Você pode seguir os passos abaixo:
