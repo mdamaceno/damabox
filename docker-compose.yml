@@ -150,6 +150,8 @@ services:
       - ${DB_CONFIG_DIR:-./config/db}/${MYSQL_TYPE:-mysql}:/etc/mysql/conf.d
     networks:
       - connect
+    depends_on:
+      - bind
 
   firebird-2.5:
     build:
