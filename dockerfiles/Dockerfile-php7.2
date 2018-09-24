@@ -1,0 +1,125 @@
+FROM php:7.2-fpm
+
+RUN apt-get update && apt-get install -y \
+  wget \
+  snmp \
+  zip \
+  libmcrypt-dev \
+  libcurl4-gnutls-dev \
+  libxml2-dev \
+  libpng-dev \
+  libc-client-dev \
+  libkrb5-dev \
+  build-essential \
+  firebird-dev \
+  libicu-dev \
+  libldb-dev \
+  libldap2-dev \
+  libedit-dev \
+  libsnmp-dev \
+  libtidy-dev \
+  libxslt-dev \
+  sqlite3 \
+  sqlite \
+  libsqlite3-dev \
+  libpq-dev \
+  libmagickwand-dev \
+  libmemcached-dev \
+  libssl-dev \
+  git \
+  sudo \
+  vim \
+  nano \
+  gnupg \
+  gnupg1 \
+  gnupg2
+
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+# Install Composer
+RUN wget https://getcomposer.org/composer.phar && \
+  mv composer.phar /usr/bin/composer && \
+  chmod a+x /usr/bin/composer
+
+RUN ln -s /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/libldap.so \
+  && ln -s /usr/lib/x86_64-linux-gnu/liblber.so /usr/lib/liblber.so
+
+# Install PHP extensions
+RUN docker-php-ext-install -j$(nproc) bcmath && \
+  docker-php-ext-install -j$(nproc) calendar && \
+  docker-php-ext-install -j$(nproc) ctype && \
+  docker-php-ext-install -j$(nproc) curl && \
+  docker-php-ext-install -j$(nproc) dba && \
+  docker-php-ext-install -j$(nproc) dom && \
+  docker-php-ext-install -j$(nproc) exif && \
+  docker-php-ext-install -j$(nproc) fileinfo && \
+  docker-php-ext-install -j$(nproc) gd && \
+  docker-php-ext-install -j$(nproc) gettext && \
+  docker-php-ext-install -j$(nproc) hash && \
+  docker-php-ext-install -j$(nproc) iconv && \
+  docker-php-ext-install -j$(nproc) interbase && \
+  docker-php-ext-install -j$(nproc) intl && \
+  docker-php-ext-install -j$(nproc) json && \
+  docker-php-ext-install -j$(nproc) ldap && \
+  docker-php-ext-install -j$(nproc) mbstring && \
+  docker-php-ext-install -j$(nproc) mysqli && \
+  docker-php-ext-install -j$(nproc) opcache && \
+  docker-php-ext-install -j$(nproc) pdo && \
+  docker-php-ext-install -j$(nproc) pdo_firebird && \
+  docker-php-ext-install -j$(nproc) pdo_mysql && \
+  docker-php-ext-install -j$(nproc) pdo_pgsql && \
+  docker-php-ext-install -j$(nproc) pdo_sqlite && \
+  docker-php-ext-install -j$(nproc) posix && \
+  docker-php-ext-install -j$(nproc) readline && \
+  docker-php-ext-install -j$(nproc) shmop && \
+  docker-php-ext-install -j$(nproc) simplexml && \
+  docker-php-ext-install -j$(nproc) snmp && \
+  docker-php-ext-install -j$(nproc) soap && \
+  docker-php-ext-install -j$(nproc) sockets && \
+  docker-php-ext-install -j$(nproc) tidy && \
+  docker-php-ext-install -j$(nproc) xml && \
+  docker-php-ext-install -j$(nproc) xsl && \
+  docker-php-ext-install -j$(nproc) zip && \
+
+  printf "\n" | pecl install imagick-beta xdebug mongodb && \
+
+  docker-php-ext-enable imagick xdebug mongodb
+
+RUN composer global require "laravel/installer"
+
+ENV PATH="/root/.composer/vendor/bin:${PATH}"
+
+# Add user damabox
+RUN adduser --disabled-password --gecos "" damabox && adduser damabox sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+# Install Yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+RUN apt-get update && apt-get install -y yarn
+
+RUN mkdir -p /app
+RUN chown -R damabox:damabox /app
+
+USER damabox
+
+RUN /bin/bash -l -c 'cd $HOME && curl -L https://git.io/n-install | bash -s -- -y'
+
+# Install Laravel installer
+RUN composer global require "laravel/installer"
+ENV PATH="/home/damabox/.composer/vendor/bin:${PATH}"
+
+# Install phpunit
+RUN sudo wget https://phar.phpunit.de/phpunit.phar
+RUN sudo chmod a+x phpunit.phar && sudo mv phpunit.phar /usr/local/bin/phpunit && phpunit --version
+
+ENV TERM=xterm
+
+# Bash customization
+RUN echo "STARTCOLOR='\e[0;36m'" >> $HOME/.bashrc
+RUN echo 'ENDCOLOR="\e[0m"' >> $HOME/.bashrc
+RUN echo 'export PS1="\n\[$STARTCOLOR\]\u@\h:\! <\t> \w\n\$ \[$ENDCOLOR\]"' >> $HOME/.bashrc
+
+# Clean up system
+RUN sudo apt-get -y autoclean && sudo apt-get -y autoremove && sudo apt-get -y clean && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+WORKDIR /app
