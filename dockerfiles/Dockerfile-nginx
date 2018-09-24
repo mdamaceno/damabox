@@ -1,0 +1,13 @@
+FROM nginx:1.15
+
+RUN mkdir /app
+
+RUN find /app -type d -exec chmod 755 {} \;
+RUN find /app -type f -exec chmod 644 {} \;
+
+VOLUME /usr/share/nginx/html
+VOLUME /etc/nginx
+VOLUME /app
+
+EXPOSE 80
+EXPOSE 443

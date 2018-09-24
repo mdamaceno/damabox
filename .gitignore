@@ -1,5 +1,7 @@
 .env
+*.swp
 *.DS_Store
+.php_cs.cache
 !.gitkeep
 
 !/config/ssl/certs/.gitkeep
@@ -15,6 +17,7 @@
 
 /config/nginx/sites-available/*.conf
 !/config/nginx/sites-available/*-example
+!/config/nginx/nginx.conf-example
 
 /config/db/mysql/*.cnf
 !/config/db/mysql/*-example
@@ -22,8 +25,6 @@
 !/config/db/percona/*-example
 /config/db/mariadb/*.cnf
 !/config/db/mariadb/*-example
-
-/logs/nginx/*.log
 
 /data/databases/firebird/*
 !/data/databases/firebird/.gitkeep
