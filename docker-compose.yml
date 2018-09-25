@@ -163,11 +163,14 @@ services:
     hostname: firebird-2.5
     ports:
       - ${FIREBIRD_PORT:-3050}:3050
+      - ${HQBIRD_PANEL_PORT:-8082}:8082
+      - ${HQBIRD_LICENSE_PORT:-8765}:8765
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     volumes:
       - ${FIREBIRD_CONFIG_FILE:-./config/db/firebird/firebird.conf}:/opt/firebird/firebird.conf
       - ${FIREBIRD_DATADIR:-./data/databases/firebird}:/databases
+    command: "sh /run.sh"
     networks:
       - connect
     depends_on:
