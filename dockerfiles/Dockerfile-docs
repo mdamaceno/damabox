@@ -1,0 +1,12 @@
+FROM python:3.6-alpine
+
+RUN pip install \
+  mkdocs-material \
+  pygments
+
+COPY ./resources/docs/set_env.sh /
+
+RUN mkdir /app
+
+WORKDIR /app
+

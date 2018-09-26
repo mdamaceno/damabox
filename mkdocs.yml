@@ -1,0 +1,32 @@
+site_name: Damabox
+repo_name: 'mdamaceno/damabox'
+repo_url: 'https://github.com/mdamaceno/damabox'
+site_author: 'Marco Damaceno'
+site_description: 'Damabox - Easy development with PHP and Nginx'
+nav:
+  - About: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - Issues: issues.md
+theme: 
+  name: material
+  language: 'en'
+  palette:
+    primary: 'teal'
+    accent: 'blue'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+extra:
+  social:
+    - type: 'github'
+      link: 'https://github.com/mdamaceno/damabox'
+  search:
+    language: 'en'
+markdown_extensions:
+  - admonition
+  - codehilite:
+      linenums: true
+  - toc:
+      permalink: true
+

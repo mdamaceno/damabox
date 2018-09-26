@@ -176,6 +176,19 @@ services:
     depends_on:
       - bind
 
+  docs:
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile-docs
+    ports:
+      - "${DOCS_PORT:-8888}:8888"
+    volumes:
+      - "./:/app"
+    environment:
+      - DOCS_ENV=${DOCS_ENV:-local}
+      - DOCS_PORT=${DOCS_PORT:-8888}
+    command: "sh /set_env.sh"
+
 networks:
   connect:
     driver: bridge
