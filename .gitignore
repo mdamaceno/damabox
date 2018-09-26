@@ -1,12 +1,4 @@
-.env
-*.swp
-*.DS_Store
-.php_cs.cache
-!.gitkeep
-
-!/config/ssl/certs/.gitkeep
 /config/ssl/certs/*
-!/config/ssl/private/.gitkeep
 /config/ssl/private/*
 
 /config/php/5.5/*.ini
@@ -26,13 +18,17 @@
 /config/db/mariadb/*.cnf
 !/config/db/mariadb/*-example
 
+/dockerfiles/resources/firebird/2.5/config/hqbird/conf/*
+!/dockerfiles/resources/firebird/2.5/config/hqbird/conf/*-example
+
 /data/databases/firebird/*
-!/data/databases/firebird/.gitkeep
 /data/databases/mysql/*
-!/data/databases/mysql/.gitkeep
 /data/databases/percona/*
-!/data/databases/percona/.gitkeep
 /data/databases/mariadb/*
-!/data/databases/mariadb/.gitkeep
 /data/www/*
-!/data/www/.gitkeep
+
+!.gitkeep
+.env
+*.swp
+*.DS_Store
+.php_cs.cache

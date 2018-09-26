@@ -32,13 +32,8 @@ VOLUME ["/databases", "/opt/firebird"]
 RUN yum clean all && \
   bash -c "rm -rf /var/cache/yum"
 
-COPY /resources/firebird/2.5/config/hqbird/conf /opt/hqbird/conf
-RUN chmod a+w /opt/hqbird/conf/access.properties
-
-COPY ./resources/firebird/2.5/scripts/docker-entrypoint.sh .
-RUN chmod 777 /docker-entrypoint.sh
+RUN mkdir /hqbird_conf
+COPY ./resources/firebird/2.5/config/hqbird/conf /hqbird_conf
 
 COPY ./resources/firebird/2.5/run.sh .
 RUN chmod a+x run.sh
-
-ENTRYPOINT /docker-entrypoint.sh /run.sh
