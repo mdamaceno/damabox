@@ -58,3 +58,4 @@ MYSQL_DATADIR=./data/databases/mysql
 REDIS_PORT=6379
 REDIS_PASSWORD=redis
 REDIS_CONFIG_DIR=./config/db/redis
+REDIS_DATA_DIR=./data/databases/redis
