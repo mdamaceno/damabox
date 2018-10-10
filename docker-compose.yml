@@ -190,6 +190,7 @@ services:
       - REDIS_PASSWORD=${REDIS_PASSWORD:-redis}
     volumes:
       - ${REDIS_CONFIG_DIR:-./config/db/redis}:/redis_conf
+      - ${REDIS_DATA_DIR:-./data/databases/redis}:/data
     command: "sh /run.sh"
     networks:
       - connect
