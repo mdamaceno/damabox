@@ -176,6 +176,26 @@ services:
     depends_on:
       - bind
 
+  redis:
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile-redis
+    restart: always
+    dns:
+      - ${BIND_IP:-10.5.0.10}
+    hostname: redis
+    ports:
+      - ${REDIS_PORT:-6379}:6379
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-redis}
+    volumes:
+      - ${REDIS_CONFIG_DIR:-./config/db/redis}:/redis_conf
+    command: "sh /run.sh"
+    networks:
+      - connect
+    depends_on:
+      - bind
+
 networks:
   connect:
     driver: bridge

@@ -17,6 +17,8 @@
 !/config/db/percona/*-example
 /config/db/mariadb/*.cnf
 !/config/db/mariadb/*-example
+/config/db/redis/*.conf
+!/config/db/redis/*-example
 
 /dockerfiles/resources/firebird/2.5/config/hqbird/conf/*
 !/dockerfiles/resources/firebird/2.5/config/hqbird/conf/*-example
