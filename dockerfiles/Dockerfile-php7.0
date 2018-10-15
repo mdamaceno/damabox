@@ -84,7 +84,7 @@ RUN docker-php-ext-install -j$(nproc) bcmath && \
 
   printf "\n" | pecl install imagick-beta xdebug mongodb && \
 
-  docker-php-ext-enable imagick xdebug mongodb
+  docker-php-ext-enable redis imagick xdebug mongodb
 
 RUN composer global require "laravel/installer"
 

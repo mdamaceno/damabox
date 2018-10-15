@@ -82,7 +82,7 @@ docker-php-ext-install -j$(nproc) xml && \
 docker-php-ext-install -j$(nproc) xsl && \
 docker-php-ext-install -j$(nproc) zip && \
 
-printf "\n" | pecl install imagick-beta xdebug mongodb && \
+printf "\n" | pecl install redis imagick-beta xdebug mongodb && \
 
 docker-php-ext-enable imagick mongodb
 
