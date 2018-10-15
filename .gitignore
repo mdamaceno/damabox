@@ -34,3 +34,4 @@
 *.swp
 *.DS_Store
 .php_cs.cache
+*.rdb
