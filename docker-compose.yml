@@ -31,6 +31,7 @@ services:
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
       - ${PHP55_CONFIG_DIR:-./config/php/5.5}:/usr/local/etc/php
+      - ${SUPERVISOR_CONFIG_DIR:-./config/supervisor}:/etc/supervisor
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:
@@ -49,6 +50,7 @@ services:
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
       - ${PHP56_CONFIG_DIR:-./config/php/5.6}:/usr/local/etc/php
+      - ${SUPERVISOR_CONFIG_DIR:-./config/supervisor}:/etc/supervisor
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:
@@ -67,6 +69,7 @@ services:
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
       - ${PHP70_CONFIG_DIR:-./config/php/7.0}:/usr/local/etc/php
+      - ${SUPERVISOR_CONFIG_DIR:-./config/supervisor}:/etc/supervisor
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:
@@ -81,10 +84,14 @@ services:
     restart: always
     dns:
       - ${BIND_IP:-10.5.0.10}
+    tmpfs:
+      - /run
+      - /var/cache
     hostname: php-7.1
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
       - ${PHP71_CONFIG_DIR:-./config/php/7.1}:/usr/local/etc/php
+      - ${SUPERVISOR_CONFIG_DIR:-./config/supervisor}:/etc/supervisor
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:
@@ -103,6 +110,7 @@ services:
     volumes:
       - ${PROJECT_DIR:-./data/www}:/app
       - ${PHP72_CONFIG_DIR:-./config/php/7.2}:/usr/local/etc/php
+      - ${SUPERVISOR_CONFIG_DIR:-./config/supervisor}:/etc/supervisor
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:

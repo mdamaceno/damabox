@@ -19,6 +19,10 @@
 !/config/db/mariadb/*-example
 /config/db/redis/*.conf
 !/config/db/redis/*-example
+/config/supervisor/*.conf
+!/config/supervisor/*-example
+/config/supervisor/conf.d/*.conf
+!/config/supervisor/conf.d/*-example
 
 /dockerfiles/resources/firebird/2.5/config/hqbird/conf/*
 !/dockerfiles/resources/firebird/2.5/config/hqbird/conf/*-example
@@ -27,6 +31,7 @@
 /data/databases/mysql/*
 /data/databases/percona/*
 /data/databases/mariadb/*
+/data/databases/redis/*
 /data/www/*
 
 !.gitkeep
