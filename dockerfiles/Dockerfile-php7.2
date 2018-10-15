@@ -81,7 +81,7 @@ RUN docker-php-ext-install -j$(nproc) bcmath && \
   docker-php-ext-install -j$(nproc) xsl && \
   docker-php-ext-install -j$(nproc) zip && \
 
-  printf "\n" | pecl install imagick-beta xdebug mongodb && \
+  printf "\n" | pecl install redis imagick-beta xdebug mongodb && \
 
   docker-php-ext-enable imagick xdebug mongodb
 
@@ -93,9 +93,10 @@ ENV PATH="/root/.composer/vendor/bin:${PATH}"
 RUN adduser --disabled-password --gecos "" damabox && adduser damabox sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Install Yarn
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-
-RUN apt-get update && apt-get install -y yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+  echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
+#  apt-get update && \
+  apt-get install -y yarn
 
 RUN mkdir -p /app
 RUN chown -R damabox:damabox /app
