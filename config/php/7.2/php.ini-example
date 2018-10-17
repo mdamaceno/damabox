@@ -14,6 +14,7 @@ zend_extension=opcache.so
 extension=pdo_firebird.so
 extension=pdo_mysql.so
 extension=pdo_pgsql.so
+extension=redis.so
 extension=shmop.so
 extension=snmp.so
 extension=soap.so

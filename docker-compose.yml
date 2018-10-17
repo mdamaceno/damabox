@@ -90,8 +90,6 @@ services:
     networks:
       - connect
     depends_on:
-      - bind
-    depends_on:
       - nginx
 
   php-7.2:
@@ -188,6 +186,27 @@ services:
       - DOCS_ENV=${DOCS_ENV:-local}
       - DOCS_PORT=${DOCS_PORT:-8888}
     command: "sh /set_env.sh"
+
+  redis:
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile-redis
+    restart: always
+    dns:
+      - ${BIND_IP:-10.5.0.10}
+    hostname: redis
+    ports:
+      - ${REDIS_PORT:-6379}:6379
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-redis}
+    volumes:
+      - ${REDIS_CONFIG_DIR:-./config/db/redis}:/redis_conf
+      - ${REDIS_DATA_DIR:-./data/databases/redis}:/data
+    command: "sh /run.sh"
+    networks:
+      - connect
+    depends_on:
+      - bind
 
 networks:
   connect:

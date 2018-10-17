@@ -1,0 +1,10 @@
+FROM redis:4-alpine
+
+RUN mkdir /redis_conf
+
+COPY ./resources/redis/run.sh /run.sh
+COPY ./resources/redis/redis.conf /usr/local/etc/redis/redis.conf
+
+EXPOSE 6379
+
+RUN chmod +x /run.sh
