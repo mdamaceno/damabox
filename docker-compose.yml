@@ -160,14 +160,37 @@ services:
       - ${BIND_IP:-10.5.0.10}
     hostname: firebird-2.5
     ports:
-      - ${FIREBIRD_PORT:-3050}:3050
-      - ${HQBIRD_PANEL_PORT:-8082}:8082
-      - ${HQBIRD_LICENSE_PORT:-8765}:8765
+      - ${FIREBIRD25_PORT:-3050}:3050
+      - ${HQBIRD25_PANEL_PORT:-8082}:8082
+      - ${HQBIRD25_LICENSE_PORT:-8765}:8765
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     volumes:
-      - ${FIREBIRD_CONFIG_FILE:-./config/db/firebird/firebird.conf}:/opt/firebird/firebird.conf
-      - ${FIREBIRD_DATADIR:-./data/databases/firebird}:/databases
+      - ${FIREBIRD25_CONFIG_FILE:-./config/db/firebird/firebird.conf}:/opt/firebird/firebird.conf
+      - ${FIREBIRD25_DATADIR:-./data/databases/firebird}:/databases
+    command: "sh /run.sh"
+    networks:
+      - connect
+    depends_on:
+      - bind
+
+  firebird-3.0:
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile-firebird3.0
+    restart: always
+    dns:
+      - ${BIND_IP:-10.5.0.10}
+    hostname: firebird-3.0
+    ports:
+      - ${FIREBIRD30_PORT:-3051}:3050
+      - ${HQBIRD30_PANEL_PORT:-8083}:8082
+      - ${HQBIRD30_LICENSE_PORT:-8766}:8765
+    environment:
+      - TZ=${TIMEZONE:-Etc/UTC}
+    volumes:
+      - ${FIREBIRD30_CONFIG_FILE:-./config/db/firebird/firebird.conf}:/opt/firebird/firebird.conf
+      - ${FIREBIRD30_DATADIR:-./data/databases/firebird}:/databases
     command: "sh /run.sh"
     networks:
       - connect
