@@ -1,0 +1,5 @@
+ftpsrv.enable = false
+ftpsrv.port = 8721
+ftpsrv.defuser=admin2
+ftpsrv.defpsw=strong password2
+ftpsrv.homedir=
