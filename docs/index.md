@@ -8,6 +8,7 @@ Check out all you can have:
 - Node.js
 - MySQL
 - Firebird 2.5
+- Firebird 3.0
 
 ## Requirements
 
