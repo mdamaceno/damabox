@@ -35,11 +35,26 @@ HTTPS_PORT=443
 NGINX_CONFIG_DIR=./config/nginx
 
 ###########################################
-# Firebird
+# Firebird 2.5
 ###########################################
 
-FIREBIRD_PORT=3050
-FIREBIRD_DATADIR=./data/databases/firebird
+FIREBIRD25_ROOT_USER=sysdba
+FIREBIRD25_ROOT_PASSWORD=masterkey
+FIREBIRD25_PORT=3050
+FIREBIRD25_DATADIR=./data/databases/firebird
+HQBIRD25_PANEL_PORT=8082
+HQBIRD25_LICENSE_PORT=8765
+
+###########################################
+# Firebird 3.0
+###########################################
+
+FIREBIRD30_ROOT_USER=sysdba
+FIREBIRD30_ROOT_PASSWORD=masterkey
+FIREBIRD30_PORT=3051
+FIREBIRD30_DATADIR=./data/databases/firebird
+HQBIRD30_PANEL_PORT=8083
+HQBIRD30_LICENSE_PORT=8766
 
 ###########################################
 # MySQL
