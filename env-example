@@ -1,21 +1,21 @@
 ###########################################
-# Damabox
+# GLOBALS
 ###########################################
 
-PROJECT_DIR=./data/www
-
-DB_CONFIG_DIR=./config/db
-PHP55_CONFIG_DIR=./config/php/5.5
-PHP56_CONFIG_DIR=./config/php/5.6
-PHP70_CONFIG_DIR=./config/php/7.0
-PHP71_CONFIG_DIR=./config/php/7.1
-PHP72_CONFIG_DIR=./config/php/7.2
-
+ # used by all containers
 TIMEZONE=America/Sao_Paulo
 
+# used by all containers
 GATEWAY=10.5.0.1
 SUBNET=10.5.0.0/24
 IP_RANGE=10.5.0.0/24
+
+ # used by nginx and php to access your script files outside the containers
+PUBLIC_DATA_DIR=./data/www
+
+# used by all containers to access your ssh-key directory outside the containers
+SSH_KEYS=
+
 
 ###########################################
 # Bind
@@ -27,44 +27,38 @@ BIND_EXTRA_HOSTS=""
 BIND_DNS_RESOLVER=8.8.8.8,8.8.4.4
 
 ###########################################
-# Project - Nginx
+# Nginx
 ###########################################
 
-HTTP_PORT=80
-HTTPS_PORT=443
-NGINX_CONFIG_DIR=./config/nginx
+NGINX_HTTP_PORT=80
+NGINX_HTTPS_PORT=443
 
 ###########################################
-# Firebird 2.5
+# PHP
 ###########################################
 
-FIREBIRD25_ROOT_USER=sysdba
-FIREBIRD25_ROOT_PASSWORD=masterkey
-FIREBIRD25_PORT=3050
-FIREBIRD25_DATADIR=./data/databases/firebird
-HQBIRD25_PANEL_PORT=8082
-HQBIRD25_LICENSE_PORT=8765
+# nothing to setup
 
 ###########################################
-# Firebird 3.0
-###########################################
-
-FIREBIRD30_ROOT_USER=sysdba
-FIREBIRD30_ROOT_PASSWORD=masterkey
-FIREBIRD30_PORT=3051
-FIREBIRD30_DATADIR=./data/databases/firebird
-HQBIRD30_PANEL_PORT=8083
-HQBIRD30_LICENSE_PORT=8766
-
-###########################################
-# MySQL
+# MySQL / MariaDB / Percona
 ###########################################
 
 MYSQL_TYPE=mysql
-MYSQL_PORT=3306
 MYSQL_VERSION=5.7
+MYSQL_PORT=3306
 MYSQL_ROOT_PASSWORD=root
-MYSQL_DATADIR=./data/databases/mysql
+MYSQL_BASE_DATA_DIR=./data/db
+
+
+###########################################
+# Postgres
+###########################################
+
+POSTGRES_VERSION=11.2
+POSTGRES_PORT=8080
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DATA_DIR=./data/db/postgres
 
 ###########################################
 # Redis
@@ -72,5 +66,22 @@ MYSQL_DATADIR=./data/databases/mysql
 
 REDIS_PORT=6379
 REDIS_PASSWORD=redis
-REDIS_CONFIG_DIR=./config/db/redis
-REDIS_DATA_DIR=./data/databases/redis
+REDIS_DATA_DIR=./data/db/redis
+
+###########################################
+# Firebird 2.5
+###########################################
+
+FIREBIRD25_PORT=3050
+HQBIRD25_PANEL_PORT=8082
+HQBIRD25_LICENSE_PORT=8765
+FIREBIRD25_DATA_DIR=./data/db/firebird/2.5
+
+###########################################
+# Firebird 3.0
+###########################################
+
+FIREBIRD30_PORT=3051
+HQBIRD30_PANEL_PORT=8083
+HQBIRD30_LICENSE_PORT=8766
+FIREBIRD30_DATA_DIR=./data/db/firebird/3.0

@@ -1,10 +1,10 @@
 server {
-    listen   80;
-
+    listen 80;
+    server_name localhost;
     root /app;
-    index index.php index.html;
-
+    
     autoindex on;
+    index index.php index.html;
 
     # this is the internal Docker DNS, cache only for 30s
     resolver 127.0.0.11 valid=30s;
@@ -12,7 +12,7 @@ server {
     location ~ \.php$ {
 
         # using variables to set up hosts avoid Nginx startup errors when trying to access a host that is not running yet
-        set $upstream php-7.2:9000;
+        set $upstream php-7.3:9000;
 
         try_files $uri =404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
@@ -25,29 +25,24 @@ server {
 }
 
 # server {
-#     listen 80 default_server;
-#     listen [::]:80 default_server;
-#     server_name domain.name;
-#     return 302 https://$server_name$request_uri;
-# }
-
-# server {
 #     listen  443;
-#     listen  [::]:443;
-
+#     server_name localhost;
 #     root /app;
-#     server_name domain.name;
+    
+#     autoindex on;
 #     index index.php index.html;
 
-#     ssl    on;
+#     # this is the internal Docker DNS, cache only for 30s
+#     resolver 127.0.0.11 valid=30s;
+
+#     ssl on;
 #     ssl_certificate     /etc/ssl/certs/nginx-selfsigned.crt;
 #     ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
 
-#     resolver 127.0.0.11 valid=30s;
-
 #     location ~ \.php$ {
 
-#         set $upstream php-7.2:9000;
+#         # using variables to set up hosts avoid Nginx startup errors when trying to access a host that is not running yet
+#         set $upstream php-7.3:9000;
 
 #         try_files $uri =404;
 #         fastcgi_split_path_info ^(.+\.php)(/.+)$;

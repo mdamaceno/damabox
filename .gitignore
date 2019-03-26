@@ -6,15 +6,22 @@
 /config/php/7.0/*.ini
 /config/php/7.1/*.ini
 /config/php/7.2/*.ini
+/config/php/7.3/*.ini
 
 /config/nginx/sites-available/*.conf
 !/config/nginx/sites-available/*-example
 !/config/nginx/nginx.conf-example
 
+/config/db/firebird/2.5/*.conf
+!/config/db/firebird/2.5/*-example
+/config/db/firebird/3.0/*.conf
+!/config/db/firebird/3.0/*-example
 /config/db/mysql/*.cnf
 !/config/db/mysql/*-example
 /config/db/percona/*.cnf
 !/config/db/percona/*-example
+/config/db/postgres/*.conf
+!/config/db/postgres/*-example
 /config/db/mariadb/*.cnf
 !/config/db/mariadb/*-example
 /config/db/redis/*.conf
