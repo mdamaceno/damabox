@@ -35,10 +35,10 @@ services:
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     volumes:
-     - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
-     - ./config/nginx/sites-available:/etc/nginx/conf.d
      - ${PUBLIC_DATA_DIR:-./data/www}:/app
      - ${SSH_KEYS:-./data/ssh-keys}:/root/.ssh
+     - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
+     - ./config/nginx/sites-available:/etc/nginx/conf.d
     networks:
       - connect
     depends_on:
@@ -53,9 +53,9 @@ services:
     dns:
       - ${BIND_IP:-10.5.0.10}
     volumes:
-      - ./config/php/5.5:/usr/local/etc/php
       - ${PUBLIC_DATA_DIR:-./data/www}:/app
       - ${SSH_KEYS:-./data/ssh-keys}:/home/damabox/.ssh
+      - ./config/php/5.5:/usr/local/etc/php
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:
@@ -72,9 +72,9 @@ services:
       - ${BIND_IP:-10.5.0.10}
     hostname: php-5.6
     volumes:
-      - ./config/php/5.6:/usr/local/etc/php
       - ${PUBLIC_DATA_DIR:-./data/www}:/app
       - ${SSH_KEYS:-./data/ssh-keys}:/home/damabox/.ssh
+      - ./config/php/5.6:/usr/local/etc/php
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:
@@ -91,9 +91,9 @@ services:
       - ${BIND_IP:-10.5.0.10}
     hostname: php-7.0
     volumes:
-      - ./config/php/7.0:/usr/local/etc/php
       - ${PUBLIC_DATA_DIR:-./data/www}:/app
       - ${SSH_KEYS:-./data/ssh-keys}:/home/damabox/.ssh
+      - ./config/php/7.0:/usr/local/etc/php
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:
@@ -110,9 +110,9 @@ services:
       - ${BIND_IP:-10.5.0.10}
     hostname: php-7.1
     volumes:
-      - ./config/php/7.1:/usr/local/etc/php
       - ${PUBLIC_DATA_DIR:-./data/www}:/app
       - ${SSH_KEYS:-./data/ssh-keys}:/home/damabox/.ssh
+      - ./config/php/7.1:/usr/local/etc/php
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:
@@ -129,9 +129,9 @@ services:
       - ${BIND_IP:-10.5.0.10}
     hostname: php-7.2
     volumes:
-      - ./config/php/7.2:/usr/local/etc/php
       - ${PUBLIC_DATA_DIR:-./data/www}:/app
       - ${SSH_KEYS:-./data/ssh-keys}:/home/damabox/.ssh
+      - ./config/php/7.2:/usr/local/etc/php
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:
@@ -148,9 +148,9 @@ services:
       - ${BIND_IP:-10.5.0.10}
     hostname: php-7.3
     volumes:
-      - ./config/php/7.3:/usr/local/etc/php
       - ${PUBLIC_DATA_DIR:-./data/www}:/app
       - ${SSH_KEYS:-./data/ssh-keys}:/home/damabox/.ssh
+      - ./config/php/7.3:/usr/local/etc/php
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     networks:
@@ -170,9 +170,9 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root}
       - TZ=${TIMEZONE:-Etc/UTC}
     volumes:
-      - ./config/db/${MYSQL_TYPE:-mysql}:/etc/mysql/conf.d
       - ${MYSQL_BASE_DATA_DIR:-./data/db}/${MYSQL_TYPE:-mysql}/${MYSQL_VERSION:-5.7}:/var/lib/mysql
       - ${SSH_KEYS:-./data/ssh-keys}:/root/.ssh
+      - ./config/db/${MYSQL_TYPE:-mysql}:/etc/mysql/conf.d
     command: --default-authentication-plugin=mysql_native_password
     networks:
       - connect
@@ -192,9 +192,9 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
       - TZ=${TIMEZONE:-Etc/UTC}
     volumes:
-      - ./config/db/postgres/postgresql.conf:/usr/local/share/postgresql/postgresql.conf
       - ${POSTGRES_DATA_DIR:-./data/db/postgres}:/var/lib/postgresql/data
       - ${SSH_KEYS:-./data/ssh-keys}:/root/.ssh
+      - ./config/db/postgres/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
     networks:
       - connect
     depends_on:
@@ -213,9 +213,9 @@ services:
     environment:
       - REDIS_PASSWORD=${REDIS_PASSWORD:-redis}
     volumes:
-      - ./config/db/redis:/redis_conf
       - ${REDIS_DATA_DIR:-./data/db/redis}:/data
       - ${SSH_KEYS:-./data/ssh-keys}:/root/.ssh
+      - ./config/db/redis:/redis_conf
     command: sh /run.sh
     networks:
       - connect
@@ -237,9 +237,9 @@ services:
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     volumes:
-      - ./config/db/firebird/2.5/firebird.conf:/opt/firebird/firebird.conf
       - ${FIREBIRD25_DATA_DIR:-./data/db/firebird/2.5}:/databases
       - ${SSH_KEYS:-./data/ssh-keys}:/root/.ssh
+      - ./config/db/firebird/2.5/firebird.conf:/opt/firebird/firebird.conf
     command: sh /run.sh
     networks:
       - connect
@@ -261,9 +261,9 @@ services:
     environment:
       - TZ=${TIMEZONE:-Etc/UTC}
     volumes:
-      - ./config/db/firebird/3.0/firebird.conf:/opt/firebird/firebird.conf
       - ${FIREBIRD30_DATA_DIR:-./data/db/firebird/3.0}:/databases
       - ${SSH_KEYS:-./data/ssh-keys}:/root/.ssh
+      - ./config/db/firebird/3.0/firebird.conf:/opt/firebird/firebird.conf
     command: sh /run.sh
     networks:
       - connect
