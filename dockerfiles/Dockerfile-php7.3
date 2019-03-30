@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:7.3-fpm
 
 RUN apt-get update && apt-get install -y \
   wget \
@@ -26,6 +26,8 @@ RUN apt-get update && apt-get install -y \
   libmagickwand-dev \
   libmemcached-dev \
   libssl-dev \
+  libzip-dev \
+  zlib1g-dev \
   git \
   sudo \
   vim \
@@ -62,7 +64,6 @@ RUN docker-php-ext-install -j$(nproc) bcmath && \
   docker-php-ext-install -j$(nproc) json && \
   docker-php-ext-install -j$(nproc) ldap && \
   docker-php-ext-install -j$(nproc) mbstring && \
-  docker-php-ext-install -j$(nproc) mcrypt && \
   docker-php-ext-install -j$(nproc) mysqli && \
   docker-php-ext-install -j$(nproc) opcache && \
   docker-php-ext-install -j$(nproc) pdo && \
@@ -98,9 +99,10 @@ ENV PATH="/root/.composer/vendor/bin:${PATH}"
 RUN adduser --disabled-password --gecos "" damabox && adduser damabox sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Install Yarn
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-
-RUN apt-get update && apt-get install -y yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+  echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
+#  apt-get update && \
+  apt-get install -y yarn
 
 RUN mkdir -p /app
 RUN chown -R damabox:damabox /app
@@ -114,7 +116,7 @@ RUN composer global require "laravel/installer"
 ENV PATH="/home/damabox/.composer/vendor/bin:${PATH}"
 
 # Install phpunit
-RUN sudo wget https://phar.phpunit.de/phpunit-7.phar -O phpunit.phar
+RUN sudo wget https://phar.phpunit.de/phpunit.phar -O phpunit.phar
 RUN sudo chmod a+x phpunit.phar && sudo mv phpunit.phar /usr/local/bin/phpunit && phpunit --version
 
 ENV TERM=xterm
