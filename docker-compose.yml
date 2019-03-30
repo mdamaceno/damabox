@@ -85,7 +85,7 @@ services:
   php-7.0:
     build:
       context: ./dockerfiles
-      dockerfile: Dockerfile-php7.1
+      dockerfile: Dockerfile-php7.0
     restart: always
     dns:
       - ${BIND_IP:-10.5.0.10}
