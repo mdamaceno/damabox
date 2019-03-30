@@ -1,6 +1,6 @@
 # Damabox
 
-O **Damabox** é uma alternativa ao XAMPP construída sobre o Docker. Com ele, você pode rodar sua aplicação PHP com servidor Nginx.
+O **Damabox** é uma alternativa ao XAMPP construída sobre o Docker. Com ele, você pode rodar sua aplicação PHP com servidor Nginx e bases de dados MySQL, MariaDB, Percona, Postgres e Firebird.
 
 ## Pré-requisitos
 
@@ -37,23 +37,23 @@ Segue um exemplo do arquivo `.env`:
 
 ```bash
 ###########################################
-# Damabox
+# GLOBALS
 ###########################################
 
-PROJECT_DIR=./data/www
-
-DB_CONFIG_DIR=./config/db
-PHP55_CONFIG_DIR=./config/php/5.5
-PHP56_CONFIG_DIR=./config/php/5.6
-PHP70_CONFIG_DIR=./config/php/7.0
-PHP71_CONFIG_DIR=./config/php/7.1
-PHP72_CONFIG_DIR=./config/php/7.2
-
+ # used by all containers
 TIMEZONE=America/Sao_Paulo
 
+# used by all containers
 GATEWAY=10.5.0.1
 SUBNET=10.5.0.0/24
 IP_RANGE=10.5.0.0/24
+
+ # used by nginx and php to access your script files outside the containers
+PUBLIC_DATA_DIR=./data/www
+
+# used by all containers to access your ssh-key directory outside the containers
+SSH_KEYS=
+
 
 ###########################################
 # Bind
@@ -65,29 +65,64 @@ BIND_EXTRA_HOSTS=""
 BIND_DNS_RESOLVER=8.8.8.8,8.8.4.4
 
 ###########################################
-# Project - Nginx
+# Nginx
 ###########################################
 
-HTTP_PORT=80
-HTTPS_PORT=443
-NGINX_CONFIG_DIR=./config/nginx
+NGINX_HTTP_PORT=80
+NGINX_HTTPS_PORT=443
 
 ###########################################
-# Firebird
+# PHP
 ###########################################
 
-FIREBIRD_PORT=3050
-FIREBIRD_DATADIR=./data/databases/firebird
+# nothing to setup
 
 ###########################################
-# MySQL
+# MySQL / MariaDB / Percona
 ###########################################
 
 MYSQL_TYPE=mysql
 MYSQL_PORT=3306
 MYSQL_VERSION=5.7
 MYSQL_ROOT_PASSWORD=root
-MYSQL_DATADIR=./data/databases/mysql
+MYSQL_BASE_DATA_DIR=./data/db
+
+
+###########################################
+# Postgres
+###########################################
+
+POSTGRES_PORT=8080
+POSTGRES_VERSION=11.2
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DATA_DIR=./data/db/postgres
+
+###########################################
+# Redis
+###########################################
+
+REDIS_PORT=6379
+REDIS_PASSWORD=redis
+REDIS_DATA_DIR=./data/db/redis
+
+###########################################
+# Firebird 2.5
+###########################################
+
+FIREBIRD25_PORT=3050
+HQBIRD25_PANEL_PORT=8082
+HQBIRD25_LICENSE_PORT=8765
+FIREBIRD25_DATA_DIR=./data/db/firebird/2.5
+
+###########################################
+# Firebird 3.0
+###########################################
+
+FIREBIRD30_PORT=3051
+HQBIRD30_PANEL_PORT=8083
+HQBIRD30_LICENSE_PORT=8766
+FIREBIRD30_DATA_DIR=./data/db/firebird/3.0
 ```
 
 ### Nginx
@@ -108,7 +143,7 @@ Por padrão, os arquivos de banco de dados ficam em `data/databases/[TIPO_DE_BAN
 
 ### Projetos
 
-O diretório `data/www/` é o local padrão para armazenar os projetos, mas isso pode ser alterado no arquivo `.env` através da variável `PROJECT_DIR=./data/www`.
+O diretório `data/www/` é o local padrão para armazenar os projetos, mas isso pode ser alterado no arquivo `.env` através da variável `PUBLIC_DATA_DIR=./data/www`.
 
 Depois de feitas as configurações necessárias, o Damabox pode ser inicializado com o seguinte comando:
 

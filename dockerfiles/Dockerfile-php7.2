@@ -81,9 +81,13 @@ RUN docker-php-ext-install -j$(nproc) bcmath && \
   docker-php-ext-install -j$(nproc) xsl && \
   docker-php-ext-install -j$(nproc) zip && \
 
-  printf "\n" | pecl install redis imagick-beta xdebug mongodb && \
+  printf "\n" | pecl install redis && \
+  pecl install imagick-beta && \
+  pecl install mongodb && \
+  pecl install memcached && pecl install && \
+  pecl install xdebug && \
 
-  docker-php-ext-enable imagick xdebug mongodb
+  docker-php-ext-enable redis imagick mongodb memcached xdebug
 
 RUN composer global require "laravel/installer"
 
@@ -110,7 +114,7 @@ RUN composer global require "laravel/installer"
 ENV PATH="/home/damabox/.composer/vendor/bin:${PATH}"
 
 # Install phpunit
-RUN sudo wget https://phar.phpunit.de/phpunit.phar
+RUN sudo wget https://phar.phpunit.de/phpunit-8.phar -O phpunit.phar
 RUN sudo chmod a+x phpunit.phar && sudo mv phpunit.phar /usr/local/bin/phpunit && phpunit --version
 
 ENV TERM=xterm
