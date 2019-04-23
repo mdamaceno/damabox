@@ -1,51 +1,64 @@
 FROM php:7.0-fpm
 
+# install the basics
 RUN apt-get update && apt-get install -y \
-  wget \
-  snmp \
-  zip \
-  libmcrypt-dev \
-  libcurl4-gnutls-dev \
-  libxml2-dev \
-  libpng-dev \
-  libc-client-dev \
-  libkrb5-dev \
   build-essential \
-  firebird-dev \
-  libicu-dev \
-  libldb-dev \
-  libldap2-dev \
-  libedit-dev \
-  libsnmp-dev \
-  libtidy-dev \
-  libxslt-dev \
-  sqlite3 \
-  sqlite \
-  libsqlite3-dev \
-  libpq-dev \
-  libmagickwand-dev \
-  libmemcached-dev \
-  libssl-dev \
-  git \
-  sudo \
-  vim \
-  nano \
   gnupg \
   gnupg1 \
-  gnupg2
+  gnupg2 \
+  libcurl4-gnutls-dev \
+  sudo \
+  wget
+
+# add respositories
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list \
+  && apt-get update
+
+# install dependencies
+RUN apt-get install -y \
+  firebird-dev \
+  git \
+  libcurl4-gnutls-dev \
+  libc-client-dev \
+  libedit-dev \
+  libfreetype6-dev \
+  libicu-dev \
+  libjpeg62-turbo-dev \
+  libkrb5-dev \
+  libldb-dev \
+  libldap2-dev \
+  libmagickwand-dev \
+  libmcrypt-dev \
+  libmemcached-dev \
+  libpng-dev \
+  libpq-dev \
+  libsnmp-dev \
+  libsqlite3-dev \
+  libssl-dev \
+  libtidy-dev \
+  libxml2-dev \
+  libxslt-dev \
+  snmp \
+  sqlite3 \
+  sqlite \
+  nano \
+  vim \
+  wget \
+  zlib1g-dev \
+  zip \
+  yarn
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # Install Composer
-RUN wget https://getcomposer.org/composer.phar && \
-  mv composer.phar /usr/bin/composer && \
-  chmod a+x /usr/bin/composer
+RUN wget https://getcomposer.org/composer.phar && mv composer.phar /usr/bin/composer && chmod a+x /usr/bin/composer
 
 RUN ln -s /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/libldap.so \
   && ln -s /usr/lib/x86_64-linux-gnu/liblber.so /usr/lib/liblber.so
 
 # Install PHP extensions
 RUN docker-php-ext-install -j$(nproc) bcmath && \
+  docker-php-ext-install -j$(nproc) bcmath && \
   docker-php-ext-install -j$(nproc) calendar && \
   docker-php-ext-install -j$(nproc) ctype && \
   docker-php-ext-install -j$(nproc) curl && \
@@ -53,6 +66,7 @@ RUN docker-php-ext-install -j$(nproc) bcmath && \
   docker-php-ext-install -j$(nproc) dom && \
   docker-php-ext-install -j$(nproc) exif && \
   docker-php-ext-install -j$(nproc) fileinfo && \
+  docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
   docker-php-ext-install -j$(nproc) gd && \
   docker-php-ext-install -j$(nproc) gettext && \
   docker-php-ext-install -j$(nproc) hash && \
@@ -81,26 +95,17 @@ RUN docker-php-ext-install -j$(nproc) bcmath && \
   docker-php-ext-install -j$(nproc) xml && \
   docker-php-ext-install -j$(nproc) xsl && \
   docker-php-ext-install -j$(nproc) zip && \
-
+  \
   printf "\n" | pecl install redis && \
   pecl install imagick-beta && \
   pecl install mongodb && \
   pecl install memcached && pecl install && \
   pecl install xdebug && \
-
+  \
   docker-php-ext-enable redis imagick mongodb memcached xdebug
-
-RUN composer global require "laravel/installer"
-
-ENV PATH="/root/.composer/vendor/bin:${PATH}"
 
 # Add user damabox
 RUN adduser --disabled-password --gecos "" damabox && adduser damabox sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
-# Install Yarn
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-
-RUN apt-get update && apt-get install -y yarn
 
 RUN mkdir -p /app
 RUN chown -R damabox:damabox /app
@@ -110,7 +115,8 @@ USER damabox
 RUN /bin/bash -l -c 'cd $HOME && curl -L https://git.io/n-install | bash -s -- -y'
 
 # Install Laravel installer
-RUN composer global require "laravel/installer"
+#RUN composer global require "laravel/installer"
+ENV PATH="/root/.composer/vendor/bin:${PATH}"
 ENV PATH="/home/damabox/.composer/vendor/bin:${PATH}"
 
 # Install phpunit
