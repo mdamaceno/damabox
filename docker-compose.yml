@@ -43,26 +43,7 @@ services:
       - connect
     depends_on:
       - bind
-
-  php-5.5:
-    build:
-      context: ./dockerfiles
-      dockerfile: Dockerfile-php5.5
-    restart: always
-    hostname: php-5.5
-    dns:
-      - ${BIND_IP:-10.5.0.10}
-    volumes:
-      - ${PUBLIC_DATA_DIR:-./data/www}:/app
-      - ${SSH_KEYS:-./data/ssh-keys}:/home/damabox/.ssh
-      - ./config/php/5.5:/usr/local/etc/php
-    environment:
-      - TZ=${TIMEZONE:-Etc/UTC}
-    networks:
-      - connect
-    depends_on:
-      - nginx
-
+      
   php-5.6:
     build:
       context: ./dockerfiles
