@@ -1,4 +1,4 @@
-version: "2.2"
+version: "3.7"
 services:
 
   bind:
@@ -279,6 +279,4 @@ networks:
       com.docker.network.enable_ipv6: "false"
     ipam:
      config:
-       - subnet: ${SUBNET:-10.5.0.0/24}
-         ip_range: ${IP_RANGE:-10.5.0.0/24}
-         gateway: ${GATEWAY:-10.5.0.1}
+      - subnet: ${SUBNET:-10.5.0.0/24}

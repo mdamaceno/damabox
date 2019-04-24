@@ -28,8 +28,8 @@ $ vim .env
 
 # Crie um arquivo php.ini dentro de config/php/VERSAO
 # para sobrescrever as configurações default do PHP (opcional).
-# Verifique o arquivo de exemplo config/php/7.1/php.ini-example
-$ vim config/php/7.1/php.ini
+# Verifique o arquivo de exemplo config/php/7.3/php.ini-example
+$ vim config/php/7.3/php.ini
 
 ```
 
@@ -125,13 +125,15 @@ HQBIRD30_LICENSE_PORT=8766
 FIREBIRD30_DATA_DIR=./data/db/firebird/3.0
 ```
 
+Para cada serviço que você precisar usar, será necessário criar o arquivo `.conf` apartir de um `.conf-example`. Ex.: Crie o arquivo `firebird.conf` a partir de `firebird.conf-example` em `config/db/firebird`.
+
 ### Nginx
 
 Dentro do diretório `config/nginx` há o arquivo `nginx.conf-example`. Faça uma cópia dele com o nome `nginx.conf`. Este arquivo pode ser alterado conforme sua necessidade.
 
-Para configurar os hosts no Nginx, pode usar o arquivo `config/nginx/sites-available/default-example` como exemplo.
+Para configurar os hosts no Nginx, pode usar o arquivo `config/nginx/sites-available/default.conf-example` como exemplo.
 
-Na definição de `server_name`, o nome deve ter como sufixo o valor da variável `BIND_TLD_SUFFIX` (padrão: local). Ex.: `server_name nome_do_projeto.local;`
+Na definição de `server_name`, o nome deve ter como sufixo o valor da variável `BIND_TLD_SUFFIX` (padrão: local). Ex.: `server_name example.local;`
 
 ### PHP
 
