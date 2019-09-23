@@ -1,18 +1,12 @@
-/config/php/5.6/*.ini
-/config/php/7.0/*.ini
-/config/php/7.1/*.ini
-/config/php/7.2/*.ini
-/config/php/7.3/*.ini
+/config/php/**/*.ini
 
 /config/nginx/*.conf
 !/config/nginx/*-example
 /config/nginx/sites-available/*.conf
 !/config/nginx/sites-available/*-example
 
-/config/db/firebird/2.5/*.conf
-!/config/db/firebird/2.5/*-example
-/config/db/firebird/3.0/*.conf
-!/config/db/firebird/3.0/*-example
+/config/db/firebird/**/*.conf
+!/config/db/firebird/**/*-example
 /config/db/mysql/*.cnf
 !/config/db/mysql/*-example
 /config/db/percona/*.cnf
@@ -24,11 +18,11 @@
 /config/db/redis/*.conf
 !/config/db/redis/*-example
 
-/dockerfiles/resources/firebird/2.5/config/hqbird/conf/*
-!/dockerfiles/resources/firebird/2.5/config/hqbird/conf/*-example
+/dockerfiles/resources/firebird/**/config/hqbird/conf/*
+!/dockerfiles/resources/firebird/**/config/hqbird/conf/*-example
 
-/data/db/firebird/2.5/*
-/data/db/firebird/3.0/*
+/data/db/firebird/**/*
+/data/db/mongodb/*
 /data/db/mysql/*
 /data/db/percona/*
 /data/db/mariadb/*
@@ -42,3 +36,5 @@
 *.DS_Store
 .php_cs.cache
 *.rdb
+/.vscode
+/docker-compose.override.yml

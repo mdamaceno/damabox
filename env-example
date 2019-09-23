@@ -8,14 +8,12 @@ TIMEZONE=America/Sao_Paulo
 # used by all containers
 GATEWAY=10.5.0.1
 SUBNET=10.5.0.0/24
-IP_RANGE=10.5.0.0/24
 
  # used by nginx and php to access your script files outside the containers
 PUBLIC_DATA_DIR=./data/www
 
 # used by all containers to access your ssh-key directory outside the containers
-SSH_KEYS=
-
+#SSH_KEYS=/path/to/your/.ssh-key-dir
 
 ###########################################
 # Bind
@@ -34,21 +32,17 @@ NGINX_HTTP_PORT=80
 NGINX_HTTPS_PORT=443
 
 ###########################################
-# PHP
-###########################################
-
-# nothing to setup
-
-###########################################
 # MySQL / MariaDB / Percona
 ###########################################
 
 MYSQL_TYPE=mysql
 MYSQL_VERSION=5.7
 MYSQL_PORT=3306
-MYSQL_ROOT_PASSWORD=root
-MYSQL_BASE_DATA_DIR=./data/db
-
+MYSQL_ROOT_PASSWORD=damabox
+#MYSQL_USER=damabox
+#MYSQL_PASSWORD=damabox
+#MYSQL_DEFAULT_DB=default_database
+MYSQL_DATA_DIR=./data/db
 
 ###########################################
 # Postgres
@@ -56,8 +50,8 @@ MYSQL_BASE_DATA_DIR=./data/db
 
 POSTGRES_VERSION=11.2
 POSTGRES_PORT=8080
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
+POSTGRES_USER=damabox
+POSTGRES_PASSWORD=damabox
 POSTGRES_DATA_DIR=./data/db/postgres
 
 ###########################################
@@ -65,8 +59,18 @@ POSTGRES_DATA_DIR=./data/db/postgres
 ###########################################
 
 REDIS_PORT=6379
-REDIS_PASSWORD=redis
+REDIS_PASSWORD=damabox
 REDIS_DATA_DIR=./data/db/redis
+
+###########################################
+# MongoDB
+###########################################
+
+MONGO_VERSION=4.2.0-bionic
+MONGO_PORT=27017
+MONGO_USER=damabox
+MONGO_PASSWORD=damabox
+MONGO_DATA_DIR=./data/db/mongodb
 
 ###########################################
 # Firebird 2.5

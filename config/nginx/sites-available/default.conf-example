@@ -6,7 +6,6 @@ server {
     listen [::]:80;
 
     index index.php index.html;
-    
     autoindex on;
 
     location / {
